@@ -23,7 +23,7 @@ const PopularShow = ({ name, url }) => {
         </div>
 
         <div className="mt-3 flex items-center">
-          <button className="h-10 2xl:h-12 bg-proj-red rounded-md text-md 2xl:text-lg h-max w-max px-3 font-semibold ">
+          <button className="h-10 2xl:h-12 bg-proj-red rounded-md text-md 2xl:text-lg h-max w-max px-6 font-semibold ">
             Watchlist
           </button>
           <button className="bg-gray-500 bg-opacity-50  rounded-md text-md 2xl:text-lg h-10 2xl:h-12 w-max px-4 ml-3">

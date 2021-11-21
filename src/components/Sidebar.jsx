@@ -151,7 +151,7 @@ const Sidebar = () => {
             {tabs.ott && <div className="h-6 w-1 bg-proj-red rounded" />}
           </div>{" "}
           <div
-            className={`text-lg 2xl:text-xlflex items-center justify-between mt-4 2xl:mt-6 menuHover ${
+            className={`text-lg 2xl:text-xl flex items-center justify-between mt-4 2xl:mt-6 menuHover ${
               !tabs.discover && "text-gray-500"
             }`}
             onClick={() => tabHandler("discover")}
@@ -168,7 +168,7 @@ const Sidebar = () => {
                 }`}
               >
                 Discover
-              </span>{" "}
+              </span>
             </div>
             {tabs.discover && <div className="h-6 w-1 bg-proj-red rounded" />}
           </div>{" "}
