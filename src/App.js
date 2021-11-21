@@ -16,7 +16,7 @@ const App = () => {
       <div className="w-2/12 border-r border-gray-600">
         <Sidebar />
       </div>
-      <div className="10/12 text-3xl text-green-400">
+      <div className="w-10/12 text-white h-screen">
         {tabs.home && <Home />}
         {tabs.ott && <OttProviders />}
         {tabs.discover && <Discover />}
@@ -29,4 +29,3 @@ const App = () => {
 };
 
 export default App;
-// 080405

@@ -9,6 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 code {
@@ -17,7 +18,7 @@ code {
 }
 
 .myBorder {
-  border: 1px solid red;
+  border: 1px solid green;
 }
 .menuHover {
   cursor: pointer;
@@ -28,9 +29,9 @@ code {
 .menuHover:hover .menuText {
   color: #fff !important;
 }
-.activeItem {
-  height: 100%;
-  width: 20px;
-  border: 1px solid red;
-  background-color: red;
+.hideScrollBar {
+  overflow: scroll;
+}
+.hideScrollBar::-webkit-scrollbar {
+  display: none;
 }
