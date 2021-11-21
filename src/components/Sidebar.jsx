@@ -128,7 +128,7 @@ const Sidebar = () => {
             </div>
             {tabs.home && <div className="h-6 w-1 bg-proj-red rounded" />}
           </div>{" "}
-          <div
+          {/* <div
             className={`text-lg 2xl:text-xl flex items-center justify-between mt-4 2xl:mt-6 menuHover ${
               !tabs.ott && "text-gray-500"
             }`}
@@ -149,7 +149,7 @@ const Sidebar = () => {
               </span>
             </div>
             {tabs.ott && <div className="h-6 w-1 bg-proj-red rounded" />}
-          </div>{" "}
+          </div>{" "} */}
           <div
             className={`text-lg 2xl:text-xl flex items-center justify-between mt-4 2xl:mt-6 menuHover ${
               !tabs.discover && "text-gray-500"
