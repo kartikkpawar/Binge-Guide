@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Logo from "../assets/Logo.svg";
 import { RiHome2Fill, RiCompassDiscoverLine } from "react-icons/ri";
-import { BiCameraMovie } from "react-icons/bi";
+// import { BiCameraMovie } from "react-icons/bi";
 import { BsViewList, BsFillStarFill } from "react-icons/bs";
 import { IoStopwatchSharp } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";

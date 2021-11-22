@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { BsSearch, BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import MoviesSidebar from "../components/MoviesSidebar";
 import PopularShow from "../components/PopularShow";
@@ -6,6 +6,8 @@ import PopularArtist from "../components/PopularArtist";
 import RecommendeMovies from "../components/RecommendeMovies";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import MoviesShowsToggle from "../components/MoviesShowsToggle";
+import { useSelector } from "react-redux";
 
 const looper = [
   { name: "The Vampire Diaries", url: "/cJYLon9ejKJV7ua03ab8Tj9u067.jpg" },
@@ -13,7 +15,7 @@ const looper = [
 ];
 const looperArtist = [{}, {}, {}, {}, {}, {}, {}, {}, {}];
 const Home = () => {
-  const [tvShows, setTvShows] = useState(true);
+  const tabs = useSelector((state) => state.tabs);
   const artistRef = useRef();
   const recommendationRef = useRef();
 
@@ -33,28 +35,7 @@ const Home = () => {
   return (
     <div className="h-full flex">
       <div className="flex flex-col justify-between w-9/12 border-r border-gray-600 pt-8 px-16 hideScrollBar">
-        <div className="flex h-max pb-3">
-          <span
-            className={`ml-8 text-xl font-normal select-none cursor-pointer ${
-              tvShows ? "text-white" : "text-gray-500"
-            }`}
-            onClick={() => {
-              setTvShows(!tvShows);
-            }}
-          >
-            Tv Shows
-          </span>
-          <span
-            className={`ml-8 text-xl font-normal select-none cursor-pointer ${
-              !tvShows ? "text-white" : "text-gray-500"
-            }`}
-            onClick={() => {
-              setTvShows(!tvShows);
-            }}
-          >
-            Movies
-          </span>
-        </div>
+        <MoviesShowsToggle />
         <div className="h-full p-3">
           <Carousel
             // autoPlay={true}
@@ -101,7 +82,7 @@ const Home = () => {
           </div>{" "}
           <div className="flex flex-col select-none">
             <div className="flex justify-between items-center">
-              <span className="my-5 text-2xl">Some recommendations</span>
+              <span className="my-5 text-2xl">Recommendations</span>
 
               <div className="flex">
                 <div className="p-3 bg-white bg-opacity-60 text-black rounded-full mr-6">
@@ -144,7 +125,7 @@ const Home = () => {
           />
         </div>
         <span className="mt-8 text-xl font-normal">
-          Popular {tvShows ? "Tv Shows" : "Movies"}
+          Popular {tabs.tvShows ? "Tv Shows" : "Movies"}
         </span>
         <div className="mt-5 flex flex-col justify-center">
           {looper.map((item) => (

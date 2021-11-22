@@ -2,11 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   home: true,
-  ott: false,
+  // ott: false,
   discover: false,
   comingSoon: false,
   favourites: false,
   watchlist: false,
+  tvShows: true,
+  movies: false,
 };
 
 export const tabsSlice = createSlice({
@@ -20,7 +22,6 @@ export const tabsSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const { changeTab } = tabsSlice.actions;
 
 export default tabsSlice.reducer;
