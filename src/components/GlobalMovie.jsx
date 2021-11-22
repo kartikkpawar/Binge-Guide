@@ -1,8 +1,9 @@
 import React from "react";
 import { IoMdAdd } from "react-icons/io";
 import { MdOutlineFavorite } from "react-icons/md";
+import { CgRemoveR } from "react-icons/cg";
 
-const GlobalMovie = ({ buttons }) => {
+const GlobalMovie = ({ buttons, remove }) => {
   return (
     <div className="h-96 ml-6 mb-6 relative movieHoverContainer">
       <img
@@ -24,13 +25,20 @@ const GlobalMovie = ({ buttons }) => {
         </div>
         {buttons && (
           <div className="h-full w-full -mt-3 moviesButton">
-            {" "}
-            <button className="bg-gray-500 bg-opacity-70  rounded-md text-md 2xl:text-lg h-10 2xl:h-12 w-max px-4 ml-3">
-              <MdOutlineFavorite className="" />
-            </button>
-            <button className="bg-gray-500 bg-opacity-70  rounded-md text-md 2xl:text-lg h-10 2xl:h-12 w-max px-4 ml-3">
-              <IoMdAdd />
-            </button>
+            {remove ? (
+              <button className="bg-gray-500 bg-opacity-70  rounded-md text-md 2xl:text-lg h-10 2xl:h-12 w-max px-4 ml-3">
+                <CgRemoveR />
+              </button>
+            ) : (
+              <>
+                <button className="bg-gray-500 bg-opacity-70  rounded-md text-md 2xl:text-lg h-10 2xl:h-12 w-max px-4 ml-3">
+                  <MdOutlineFavorite className="" />
+                </button>
+                <button className="bg-gray-500 bg-opacity-70  rounded-md text-md 2xl:text-lg h-10 2xl:h-12 w-max px-4 ml-3">
+                  <IoMdAdd />
+                </button>
+              </>
+            )}
           </div>
         )}
       </div>

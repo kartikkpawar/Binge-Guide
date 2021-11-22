@@ -87,7 +87,7 @@ const Discover = () => {
             Search
           </button>
         </div>
-        <div className="flex flex-wrap mt-12 ">
+        <div className="flex flex-wrap mt-12 justify-around">
           {looper.map((item) => (
             <GlobalMovie buttons />
           ))}
