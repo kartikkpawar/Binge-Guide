@@ -52,7 +52,7 @@ const Home = () => {
             <div className="flex justify-between items-center">
               <span className="my-5 text-2xl">Poplar artist</span>
               <div className="flex">
-                <div className="p-3 bg-white bg-opacity-60 text-black rounded-full mr-6">
+                <div className="p-3 border border-white text-white rounded-full mr-6">
                   <BsChevronLeft
                     className="cursor-pointer"
                     onClick={() => {
@@ -60,7 +60,7 @@ const Home = () => {
                     }}
                   />
                 </div>
-                <div className="p-3 bg-white bg-opacity-60 text-black rounded-full">
+                <div className="p-3  border border-white text-white rounded-full">
                   <BsChevronRight
                     className="cursor-pointer"
                     onClick={() => {
@@ -87,7 +87,7 @@ const Home = () => {
               </span>
 
               <div className="flex">
-                <div className="p-3 bg-white bg-opacity-60 text-black rounded-full mr-6">
+                <div className="p-3 border border-white text-white rounded-full mr-6">
                   <BsChevronLeft
                     className="cursor-pointer"
                     onClick={() => {
@@ -95,7 +95,7 @@ const Home = () => {
                     }}
                   />
                 </div>
-                <div className="p-3 bg-white bg-opacity-60 text-black rounded-full">
+                <div className="p-3 border border-white text-white rounded-full">
                   <BsChevronRight
                     className="cursor-pointer"
                     onClick={() => {

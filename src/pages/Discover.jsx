@@ -32,7 +32,7 @@ const Discover = () => {
               Available OTT Platforms
             </span>
             <div className="flex">
-              <div className="p-3 bg-white bg-opacity-60 text-black rounded-full mr-6">
+              <div className="p-3 border border-white text-white rounded-full mr-6">
                 <BsChevronLeft
                   className="cursor-pointer"
                   onClick={() => {
@@ -40,7 +40,7 @@ const Discover = () => {
                   }}
                 />
               </div>
-              <div className="p-3 bg-white bg-opacity-60 text-black rounded-full">
+              <div className="p-3 border border-white text-white rounded-full">
                 <BsChevronRight
                   className="cursor-pointer"
                   onClick={() => {
