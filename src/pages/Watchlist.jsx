@@ -9,7 +9,7 @@ const Watchlist = () => {
       <MoviesShowsToggle />
       <span className=" text-3xl uppercase ml-8 mt-8">Watchlist</span>
 
-      <div className="flex w-full h-full flex-wrap mt-12 justify-around ">
+      <div className="flex w-full h-full flex-wrap mt-12 justify-between pr-8">
         {looper.map((item) => (
           <GlobalMovie buttons remove />
         ))}

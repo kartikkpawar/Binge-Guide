@@ -87,7 +87,7 @@ const Discover = () => {
             Search
           </button>
         </div>
-        <div className="flex flex-wrap mt-12 justify-around">
+        <div className="flex flex-wrap mt-12 justify-between pr-8">
           {looper.map((item) => (
             <GlobalMovie buttons />
           ))}
