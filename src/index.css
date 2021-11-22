@@ -35,3 +35,32 @@ code {
 .hideScrollBar::-webkit-scrollbar {
   display: none;
 }
+.Dropdown-control {
+  background-color: #080405 !important;
+  color: #fff !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between;
+  border: 1px solid red;
+}
+.movieHoverContainer:hover .movieDetails {
+  background-color: #00000080;
+}
+.movieHoverContainer:hover .movieCategory {
+  color: #1494d6;
+}
+.movieDirector {
+  display: none;
+}
+.moviesButton {
+  display: none;
+}
+.movieHoverContainer:hover .movieDirector {
+  display: block;
+}
+.movieHoverContainer:hover .moviesButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

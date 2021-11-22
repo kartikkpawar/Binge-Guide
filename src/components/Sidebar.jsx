@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Logo from "../assets/Logo.svg";
 import { RiHome2Fill, RiCompassDiscoverLine } from "react-icons/ri";
-// import { BiCameraMovie } from "react-icons/bi";
+import { BiCameraMovie } from "react-icons/bi";
 import { BsViewList, BsFillStarFill } from "react-icons/bs";
 import { IoStopwatchSharp } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
@@ -11,7 +11,7 @@ import { changeTab } from "../app/tabs";
 const Sidebar = () => {
   const [tabs, setTabs] = useState({
     home: true,
-    ott: false,
+    recommendation: false,
     discover: false,
     comingSoon: false,
     favourites: false,
@@ -34,17 +34,17 @@ const Sidebar = () => {
       setTabs((prevstate) => ({
         ...prevstate,
         home: true,
-        ott: false,
+        recommendation: false,
         discover: false,
         comingSoon: false,
         favourites: false,
         watchlist: false,
       }));
-    tabName === "ott" &&
+    tabName === "recommendation" &&
       setTabs((prevstate) => ({
         ...prevstate,
         home: false,
-        ott: true,
+        recommendation: true,
         discover: false,
         comingSoon: false,
         favourites: false,
@@ -54,7 +54,7 @@ const Sidebar = () => {
       setTabs((prevstate) => ({
         ...prevstate,
         home: false,
-        ott: false,
+        recommendation: false,
         discover: true,
         comingSoon: false,
         favourites: false,
@@ -64,7 +64,7 @@ const Sidebar = () => {
       setTabs((prevstate) => ({
         ...prevstate,
         home: false,
-        ott: false,
+        recommendation: false,
         discover: false,
         comingSoon: true,
         favourites: false,
@@ -74,7 +74,7 @@ const Sidebar = () => {
       setTabs((prevstate) => ({
         ...prevstate,
         home: false,
-        ott: false,
+        recommendation: false,
         discover: false,
         comingSoon: false,
         favourites: true,
@@ -84,7 +84,7 @@ const Sidebar = () => {
       setTabs((prevstate) => ({
         ...prevstate,
         home: false,
-        ott: false,
+        recommendation: false,
         discover: false,
         comingSoon: false,
         favourites: false,
@@ -128,28 +128,30 @@ const Sidebar = () => {
             </div>
             {tabs.home && <div className="h-6 w-1 bg-proj-red rounded" />}
           </div>{" "}
-          {/* <div
+          <div
             className={`text-lg 2xl:text-xl flex items-center justify-between mt-4 2xl:mt-6 menuHover ${
-              !tabs.ott && "text-gray-500"
+              !tabs.recommendation && "text-gray-500"
             }`}
-            onClick={() => tabHandler("ott")}
+            onClick={() => tabHandler("recommendation")}
           >
             <div className="flex items-center">
               <BiCameraMovie
                 className={`text-xl 2xl:text-2xl menuIcon ${
-                  tabs.ott && "text-proj-red"
+                  tabs.recommendation && "text-proj-red"
                 }`}
               />
               <span
                 className={`ml-2 text-lg 2xl:text-xl font-semibold menuText ${
-                  tabs.ott && "text-white"
+                  tabs.recommendation && "text-white"
                 }`}
               >
-                OTT Providers
+                Recommendations
               </span>
             </div>
-            {tabs.ott && <div className="h-6 w-1 bg-proj-red rounded" />}
-          </div>{" "} */}
+            {tabs.recommendation && (
+              <div className="h-6 w-1 bg-proj-red rounded" />
+            )}
+          </div>{" "}
           <div
             className={`text-lg 2xl:text-xl flex items-center justify-between mt-4 2xl:mt-6 menuHover ${
               !tabs.discover && "text-gray-500"

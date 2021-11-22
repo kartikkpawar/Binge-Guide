@@ -82,7 +82,9 @@ const Home = () => {
           </div>{" "}
           <div className="flex flex-col select-none">
             <div className="flex justify-between items-center">
-              <span className="my-5 text-2xl">Recommendations</span>
+              <span className="my-5 text-2xl">
+                Trending {tabs.tvShows ? "Tv Shows" : "Movies"}
+              </span>
 
               <div className="flex">
                 <div className="p-3 bg-white bg-opacity-60 text-black rounded-full mr-6">
@@ -135,7 +137,7 @@ const Home = () => {
             See More
           </button>
         </div>
-        <span className="mt-3 text-xl font-normal">My Lists</span>
+        <span className="mt-3 text-xl font-normal">Watched</span>
         <div className="mt-5 flex flex-col justify-center"></div>
       </div>
     </div>
