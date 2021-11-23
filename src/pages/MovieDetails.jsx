@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { data } from "../demoData";
 import { castData } from "../castdata";
+import { videosData } from "../trailerData";
 import { IoMdArrowBack } from "react-icons/io";
-import { BsFillPlayFill } from "react-icons/bs";
+import { BsChevronDown, BsChevronUp, BsFillPlayFill } from "react-icons/bs";
 import { AiTwotoneHeart } from "react-icons/ai";
 import { FaShareAlt } from "react-icons/fa";
 import { BsPlusLg } from "react-icons/bs";
@@ -15,9 +16,12 @@ import SimplifyNumber from "simplify-number";
 import moment from "moment";
 import humanizeDuration from "humanize-duration";
 import MoviesSidebar from "../components/MoviesSidebar";
+import Modal from "@mui/material/Modal";
+import Dropdown from "react-dropdown";
+import { useNavigate } from "react-router";
 
 const looper = [{}, {}, {}];
-const MovieDetails = () => {
+const MovieDetails = ({ seasons = true }) => {
   const recommendationMessage = (vote) => {
     if (vote * 10 > 70) {
       return (
@@ -40,6 +44,12 @@ const MovieDetails = () => {
       },
     },
   });
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const Trailer = videosData.results.find((video) => video.type === "Trailer");
+  const options = ["Season 1", "Season 2", "Season 3", "Season 4"];
+  const defaultOption = options[0];
+  const navigate = useNavigate();
 
   return (
     <div className="bg-black-background h-screen w-full overflow-scroll hideScrollBar">
@@ -50,7 +60,10 @@ const MovieDetails = () => {
         }}
       >
         <div className="flex items-center">
-          <div className="p-3 bg-white bg-opacity-60 text-black rounded-full mr-6 w-max">
+          <div
+            className="p-3 bg-white bg-opacity-60 text-black rounded-full mr-6 w-max"
+            onClick={() => navigate("/")}
+          >
             <IoMdArrowBack className="cursor-pointer text-2xl" />
           </div>
           <div className="flex items-center justify-between w-full">
@@ -86,9 +99,14 @@ const MovieDetails = () => {
                 {recommendationMessage(data.vote_average)}
               </div>
             </div>
-            <div className="flex items-center border rounded-full border-white w-52 h-12 justify-center px-10 text-proj-red cursor-pointer select-none text-xl">
+            <div
+              className=" group hover:bg-white flex items-center border rounded-full border-white w-52 h-12 justify-center px-10 text-proj-red cursor-pointer select-none text-xl"
+              onClick={() => setModalOpen(true)}
+            >
               <BsFillPlayFill className="text-2xl" />
-              <span className="ml-3 text-white font-semibold">Trailer</span>
+              <span className="ml-3 text-white font-semibold group-hover:text-proj-red">
+                Trailer
+              </span>
             </div>
           </div>
         </div>
@@ -156,6 +174,18 @@ const MovieDetails = () => {
                 <BsPlusLg />
               </span>
             </div>
+            {seasons && (
+              <div className="flex items-center border-2 border-gray-500 w-max p-1 pl-3 ml-6">
+                <Dropdown
+                  options={options}
+                  value={defaultOption}
+                  placeholder="Genre"
+                  className="w-full dropdownDetails"
+                  arrowClosed={<BsChevronDown className="ml-3" />}
+                  arrowOpen={<BsChevronUp className="ml-3" />}
+                />
+              </div>
+            )}
           </div>
           <div className="mt-10">
             <span className="text-white text-xl font-semibold uppercase">
@@ -173,7 +203,7 @@ const MovieDetails = () => {
                   <img
                     src={`https://image.tmdb.org/t/p/original${mem.profile_path}`}
                     alt=""
-                    className="rounded-full h-28 w-28"
+                    className="h-28 rounded-md "
                   />
                   <div className="ml-4">
                     <span className="text-white text-xl font-md">
@@ -199,6 +229,23 @@ const MovieDetails = () => {
           </div>
         </div>
       </div>
+      <Modal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        className="flex "
+      >
+        <div className="mx-auto my-auto w-3/4 h-3/4 outline-none">
+          <iframe
+            className="h-full w-full"
+            src={`https://www.youtube.com/embed/${Trailer.key}`}
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          ></iframe>
+        </div>
+      </Modal>
     </div>
   );
 };

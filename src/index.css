@@ -44,6 +44,15 @@ code {
   justify-content: space-between;
   border: 1px solid red;
 }
+.Dropdown-control .dropdownDetails {
+  background-color: #fff !important;
+  color: #fff !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between;
+  border: 1px solid red;
+}
 .movieHoverContainer:hover .movieDetails {
   background-color: #00000080;
 }

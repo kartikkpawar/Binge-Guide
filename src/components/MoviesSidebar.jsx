@@ -20,7 +20,7 @@ const MoviesSidebar = ({ image, name, gener }) => {
           Sci-Fi, Action
         </span>
         <div className="h-full mt-1 flex items-center">
-          <div className="h-10 w-10">
+          <div className="h-8 w-8">
             <CircularProgressbarWithChildren
               value={77}
               background={false}
