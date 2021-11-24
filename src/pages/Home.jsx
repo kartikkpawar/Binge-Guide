@@ -16,6 +16,7 @@ const looper = [
 const looperArtist = new Array(15).fill("");
 const Home = () => {
   const tabs = useSelector((state) => state.tabs);
+
   const artistRef = useRef();
   const recommendationRef = useRef();
 

@@ -4,11 +4,17 @@ import { RiHome2Fill, RiCompassDiscoverLine } from "react-icons/ri";
 import { BiCameraMovie } from "react-icons/bi";
 import { BsViewList, BsFillStarFill } from "react-icons/bs";
 import { IoStopwatchSharp } from "react-icons/io5";
-import { FiLogOut } from "react-icons/fi";
-import { useDispatch } from "react-redux";
+import { FiLogOut, FiLogIn } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
 import { changeTab } from "../app/tabs";
+import { signOutUSer } from "../app/auth";
+import { useNavigate } from "react-router";
 
 const Sidebar = () => {
+  const authState = useSelector((state) => state.auth);
+  console.log(authState);
+  const navigate = useNavigate();
+
   const [tabs, setTabs] = useState({
     home: true,
     freeWatch: false,
@@ -252,14 +258,25 @@ const Sidebar = () => {
       </div>
       <div className="mt-8 2xl:mt-10 mx-auto">
         <span className="text-lg 2xl:text-xl text-gray-400 ml-6 font-medium uppercase">
-          General
+          Profile
         </span>
         <div className="ml-5 mt-4 2xl:mt-6">
           <div className="text-lg 2xl:text-xl text-gray-500 flex items-center mt-6 menuHover">
-            <FiLogOut className="text-xl 2xl:text-2xl menuIcon" />
-            <span className="ml-2 text-lg 2xl:text-xl font-semibold menuText">
-              Logout
-            </span>
+            {authState.auth ? (
+              <div className="flex" onClick={() => dispatch(signOutUSer())}>
+                <FiLogOut className="text-xl 2xl:text-2xl menuIcon" />
+                <span className="ml-2 text-lg 2xl:text-xl font-semibold menuText">
+                  Sign Out
+                </span>
+              </div>
+            ) : (
+              <div className="flex" onClick={() => navigate("/signin")}>
+                <FiLogIn className="text-xl 2xl:text-2xl menuIcon" />
+                <span className="ml-2 text-lg 2xl:text-xl font-semibold menuText">
+                  Sign In
+                </span>
+              </div>
+            )}
           </div>{" "}
         </div>
       </div>

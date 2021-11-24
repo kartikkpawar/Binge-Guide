@@ -2,7 +2,7 @@ import React from "react";
 import GlobalMovie from "../components/GlobalMovie";
 import MoviesShowsToggle from "../components/MoviesShowsToggle";
 
-const looper = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
+const looper = new Array(20).fill("");
 const Favourites = () => {
   return (
     <div className="h-full pt-8 flex w-full flex-col overflow-scroll hideScrollBar">
