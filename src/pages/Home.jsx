@@ -13,7 +13,7 @@ const looper = [
   { name: "The Vampire Diaries", url: "/cJYLon9ejKJV7ua03ab8Tj9u067.jpg" },
   { name: "Suits", url: "/eVV2A3PYJLmHdXpiveiU6Lk7jbV.jpg" },
 ];
-const looperArtist = [{}, {}, {}, {}, {}, {}, {}, {}, {}];
+const looperArtist = new Array(15).fill("");
 const Home = () => {
   const tabs = useSelector((state) => state.tabs);
   const artistRef = useRef();

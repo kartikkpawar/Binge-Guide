@@ -11,7 +11,7 @@ import { changeTab } from "../app/tabs";
 const Sidebar = () => {
   const [tabs, setTabs] = useState({
     home: true,
-    recommendation: false,
+    freeWatch: false,
     discover: false,
     comingSoon: false,
     favourites: false,
@@ -34,17 +34,17 @@ const Sidebar = () => {
       setTabs((prevstate) => ({
         ...prevstate,
         home: true,
-        recommendation: false,
+        freeWatch: false,
         discover: false,
         comingSoon: false,
         favourites: false,
         watchlist: false,
       }));
-    tabName === "recommendation" &&
+    tabName === "freeWatch" &&
       setTabs((prevstate) => ({
         ...prevstate,
         home: false,
-        recommendation: true,
+        freeWatch: true,
         discover: false,
         comingSoon: false,
         favourites: false,
@@ -54,7 +54,7 @@ const Sidebar = () => {
       setTabs((prevstate) => ({
         ...prevstate,
         home: false,
-        recommendation: false,
+        freeWatch: false,
         discover: true,
         comingSoon: false,
         favourites: false,
@@ -64,7 +64,7 @@ const Sidebar = () => {
       setTabs((prevstate) => ({
         ...prevstate,
         home: false,
-        recommendation: false,
+        freeWatch: false,
         discover: false,
         comingSoon: true,
         favourites: false,
@@ -74,7 +74,7 @@ const Sidebar = () => {
       setTabs((prevstate) => ({
         ...prevstate,
         home: false,
-        recommendation: false,
+        freeWatch: false,
         discover: false,
         comingSoon: false,
         favourites: true,
@@ -84,7 +84,7 @@ const Sidebar = () => {
       setTabs((prevstate) => ({
         ...prevstate,
         home: false,
-        recommendation: false,
+        freeWatch: false,
         discover: false,
         comingSoon: false,
         favourites: false,
@@ -130,27 +130,25 @@ const Sidebar = () => {
           </div>{" "}
           <div
             className={`text-lg 2xl:text-xl flex items-center justify-between mt-4 2xl:mt-6 menuHover ${
-              !tabs.recommendation && "text-gray-500"
+              !tabs.freeWatch && "text-gray-500"
             }`}
-            onClick={() => tabHandler("recommendation")}
+            onClick={() => tabHandler("freeWatch")}
           >
             <div className="flex items-center">
               <BiCameraMovie
                 className={`text-xl 2xl:text-2xl menuIcon ${
-                  tabs.recommendation && "text-proj-red"
+                  tabs.freeWatch && "text-proj-red"
                 }`}
               />
               <span
                 className={`ml-2 text-lg 2xl:text-xl font-semibold menuText ${
-                  tabs.recommendation && "text-white"
+                  tabs.freeWatch && "text-white"
                 }`}
               >
-                Recommendations
+                Free to watch
               </span>
             </div>
-            {tabs.recommendation && (
-              <div className="h-6 w-1 bg-proj-red rounded" />
-            )}
+            {tabs.freeWatch && <div className="h-6 w-1 bg-proj-red rounded" />}
           </div>{" "}
           <div
             className={`text-lg 2xl:text-xl flex items-center justify-between mt-4 2xl:mt-6 menuHover ${

@@ -56,7 +56,7 @@ const MovieDetails = ({ seasons = true }) => {
       <div
         className="h-4/6 rounded-bl-3xl rounded-br-3xl p-8 bg-cover bg-center"
         style={{
-          background: `linear-gradient(180deg, rgba(255,255,255,0.50) 0%, rgba(212,212,220,0) 0%, rgba(0,0,0,0.8) 91%), url(https://image.tmdb.org/t/p/original${data.backdrop_path}`,
+          background: `linear-gradient(180deg, rgba(255,255,255,0.50) 0%, rgba(212,212,220,0) 0%, rgba(0,0,0,0.8) 91%), url(https://image.tmdb.org/t/p/original${data.backdrop_path})`,
         }}
       >
         <div className="flex items-center">

@@ -1,9 +1,8 @@
 import React from "react";
 import GlobalMovie from "../components/GlobalMovie";
 import MoviesShowsToggle from "../components/MoviesShowsToggle";
-
 const looper = new Array(30).fill("");
-const ComingSoon = () => {
+const FreeWatch = () => {
   return (
     <div className="h-full pt-8 flex w-full flex-col overflow-scroll hideScrollBar pr-8">
       <MoviesShowsToggle />
@@ -16,4 +15,4 @@ const ComingSoon = () => {
   );
 };
 
-export default ComingSoon;
+export default FreeWatch;

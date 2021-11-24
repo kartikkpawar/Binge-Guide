@@ -1,12 +1,12 @@
 import React from "react";
 import Sidebar from "./components/Sidebar";
 import { useSelector } from "react-redux";
-import Recommendations from "./pages/Recommendations";
 import Home from "./pages/Home";
 import Discover from "./pages/Discover";
 import Watchlist from "./pages/Watchlist";
 import Favourites from "./pages/Favourites";
 import ComingSoon from "./pages/ComingSoon";
+import FreeWatch from "./pages/FreeWatch";
 const App = () => {
   const tabs = useSelector((state) => state.tabs);
 
@@ -17,7 +17,7 @@ const App = () => {
       </div>
       <div className="w-10/12 text-white h-screen">
         {tabs.home && <Home />}
-        {tabs.recommendation && <Recommendations />}
+        {tabs.freeWatch && <FreeWatch />}
         {tabs.discover && <Discover />}
         {tabs.comingSoon && <ComingSoon />}
         {tabs.favourites && <Favourites />}

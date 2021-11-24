@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   home: true,
-  recommendation: false,
+  freeWatch: false,
   discover: false,
   comingSoon: false,
   favourites: false,
