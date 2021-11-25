@@ -36,10 +36,8 @@ const MoviesSidebar = ({
       />
       <div className="flex flex-col ml-2 text-white h-full">
         <span className="font-light 2xl:font-normal text-md">{name}</span>
-        {/* <span className="text-gray-500 font-light 2xl:font-normal">
-          Sci-Fi, Action
-        </span> */}
-        <div className="h-full mt-1 flex items-center">
+
+        <div className="h-full flex items-center">
           <div className="h-10 w-10">
             <CircularProgressbarWithChildren
               value={votesAvg * 10}

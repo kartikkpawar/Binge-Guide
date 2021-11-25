@@ -7,9 +7,6 @@ import {
   BsChevronDown,
 } from "react-icons/bs";
 import MoviesShowsToggle from "../components/MoviesShowsToggle";
-
-import Dropdown from "react-dropdown";
-import "react-dropdown/style.css";
 import GlobalMovie from "../components/GlobalMovie";
 
 const looper = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
@@ -19,8 +16,8 @@ const Discover = () => {
     direction === "left" && ottRef.current.scrollBy(120, 0);
     direction === "right" && ottRef.current.scrollBy(-120, 0);
   };
-  const options = ["Action", "Sci-Fi", "Crime"];
-  const defaultOption = options[0];
+  // const options = ["Action", "Sci-Fi", "Crime"];
+  // const defaultOption = options[0];
   return (
     <div className="h-full pt-8 flex w-full flex-col">
       <MoviesShowsToggle />
@@ -73,7 +70,7 @@ const Discover = () => {
             />
           </div>
 
-          <div className="flex items-center border-b-2 border-gray-500 w-3/12  p-1 pl-3 ml-6">
+          {/* <div className="flex items-center border-b-2 border-gray-500 w-3/12  p-1 pl-3 ml-6">
             <Dropdown
               options={options}
               value={defaultOption}
@@ -82,7 +79,7 @@ const Discover = () => {
               arrowClosed={<BsChevronDown />}
               arrowOpen={<BsChevronUp />}
             />
-          </div>
+          </div> */}
           <button className="h-12 ml-6 bg-proj-red rounded-lg text-lg h-max px-6 font-semibold">
             Search
           </button>

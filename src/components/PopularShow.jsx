@@ -3,7 +3,8 @@ import { MdOutlineFavorite } from "react-icons/md";
 import { BsEye } from "react-icons/bs";
 import { useNavigate } from "react-router";
 
-const PopularShow = ({ name, url, populartiy, type, id }) => {
+const PopularShow = ({ name, url, populartiy, type, id, geners }) => {
+  console.log(geners);
   const navigate = useNavigate();
   const handleOnClick = () => {
     if (type) {
@@ -25,7 +26,7 @@ const PopularShow = ({ name, url, populartiy, type, id }) => {
         </span>
         <div className="uppercase mt-3">
           <span className="font-normal text-sm 2xl:text-base text-gray-400 ">
-            Action, Adventure, Sci-Fi
+            {geners.map((g) => g + ", ")}
           </span>
           <span className="ml-2 text-gray-200">%{populartiy * 10} Match</span>
         </div>

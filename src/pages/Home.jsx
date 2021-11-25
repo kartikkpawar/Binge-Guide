@@ -17,6 +17,8 @@ import {
   useMediaTrendingQuery,
 } from "../app/mediaApi";
 
+import { tvGenersHelper, movieGenersHelper } from "../genres";
+
 const Home = () => {
   const tabs = useSelector((state) => state.tabs);
 
@@ -79,6 +81,11 @@ const Home = () => {
                   type={tabs.tvShows}
                   id={show.id}
                   key={show.id}
+                  geners={
+                    tabs.tvShows
+                      ? tvGenersHelper(show.genre_ids)
+                      : movieGenersHelper(show.genre_ids)
+                  }
                 />
               ))}
             </Carousel>

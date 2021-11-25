@@ -40,20 +40,20 @@ const tvGeners = [
 
 const tvGenersHelper = (id) => {
   const valArray = [];
-  for (let i = 0; i < tvGeners.length; i++) {
-    const element = tvGeners[i];
-    const temp = tvGeners.filter((genre) => genre.id === element);
-    valArray.push(tvGeners[temp]);
-  }
+
+  id.forEach((i) => {
+    const temp = tvGeners.find((g) => g.id === i);
+    valArray.push(temp.name);
+  });
+
   return valArray;
 };
 const movieGenersHelper = (id) => {
   const valArray = [];
-  for (let i = 0; i < movieGeners.length; i++) {
-    const element = movieGeners[i];
-    const temp = movieGeners.filter((genre) => genre.id === element);
-    valArray.push(movieGeners[temp]);
-  }
+  id.forEach((i) => {
+    const temp = movieGeners.find((g) => g.id === i);
+    valArray.push(temp.name);
+  });
   return valArray;
 };
 export { tvGenersHelper, movieGenersHelper };
