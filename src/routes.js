@@ -13,12 +13,12 @@ const RoutesManager = () => {
         <Routes>
           <Route exact path="/signin" element={<Signin />} />
           <Route exact path="/signup" element={<Signup />} />
-
           <Route
             exact
             path="/tv-detail/:id/:season"
             element={<ShowDetails />}
-          />
+          />{" "}
+          <Route exact path="/tv-detail/:id" element={<ShowDetails />} />
           <Route exact path="/movie-detail/:id" element={<MovieDetails />} />
           <Route exact path="/actor-detail/:id" element={<ActorDetail />} />
           <Route exact path="/" element={<App />} />

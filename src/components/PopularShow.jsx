@@ -1,8 +1,16 @@
 import React from "react";
 import { MdOutlineFavorite } from "react-icons/md";
 import { BsEye } from "react-icons/bs";
+import { useNavigate } from "react-router";
 
-const PopularShow = ({ name, url }) => {
+const PopularShow = ({ name, url, populartiy, type, id }) => {
+  const navigate = useNavigate();
+  const handleOnClick = () => {
+    if (type) {
+      return navigate(`/tv-detail/${id}`);
+    }
+    return navigate(`/movie-detail/${id}`);
+  };
   return (
     <div
       className="h-full p-4 w-11/12 rounded-3xl"
@@ -19,7 +27,7 @@ const PopularShow = ({ name, url }) => {
           <span className="font-normal text-sm 2xl:text-base text-gray-400 ">
             Action, Adventure, Sci-Fi
           </span>
-          <span className="ml-2 text-gray-200">%98 Match</span>
+          <span className="ml-2 text-gray-200">%{populartiy * 10} Match</span>
         </div>
 
         <div className="mt-3 flex items-center">
@@ -29,7 +37,10 @@ const PopularShow = ({ name, url }) => {
           <button className="bg-gray-500 bg-opacity-50  rounded-md text-md 2xl:text-lg h-10 2xl:h-12 w-max px-4 ml-3">
             <MdOutlineFavorite className="" />
           </button>
-          <button className="bg-gray-500 bg-opacity-50  rounded-md text-md 2xl:text-lg h-10 2xl:h-12 w-max px-4 ml-3">
+          <button
+            className="bg-gray-500 bg-opacity-50  rounded-md text-md 2xl:text-lg h-10 2xl:h-12 w-max px-4 ml-3"
+            onClick={handleOnClick}
+          >
             <BsEye />
           </button>
         </div>

@@ -197,7 +197,7 @@ const Sidebar = () => {
                   tabs.comingSoon && "text-white"
                 }`}
               >
-                Coming Soon
+                Upcoming Movies
               </span>{" "}
             </div>
             {tabs.comingSoon && <div className="h-6 w-1 bg-proj-red rounded" />}
