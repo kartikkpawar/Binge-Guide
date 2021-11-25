@@ -18,7 +18,6 @@ const RoutesManager = () => {
             path="/tv-detail/:id/:season"
             element={<ShowDetails />}
           />{" "}
-          <Route exact path="/tv-detail/:id" element={<ShowDetails />} />
           <Route exact path="/movie-detail/:id" element={<MovieDetails />} />
           <Route exact path="/actor-detail/:id" element={<ActorDetail />} />
           <Route exact path="/" element={<App />} />

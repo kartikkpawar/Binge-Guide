@@ -8,7 +8,7 @@ const GlobalMovie = ({ buttons, remove, type, name, date, image, id }) => {
   const navigate = useNavigate();
   const handleOnClick = () => {
     if (type) {
-      return navigate(`/tv-detail/${id}`);
+      return navigate(`/tv-detail/${id}/1`);
     }
     return navigate(`/movie-detail/${id}`);
   };

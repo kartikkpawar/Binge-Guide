@@ -36,8 +36,8 @@ export const mediaApi = createApi({
     }),
     mediaWatchProviders: builder.query({
       query: (args) => {
-        const { type } = args;
-        return `/${type}/580489/watch/providers?api_key=${API_KEY}`;
+        const { type, id } = args;
+        return `/${type}/${id}/watch/providers?api_key=${API_KEY}`;
       },
     }),
     mediaCast: builder.query({
@@ -58,8 +58,17 @@ export const mediaApi = createApi({
         return `/${type}/${id}/videos?api_key=${API_KEY}&language=en-US`;
       },
     }),
-    movieDetails: builder.query({
-      query: (id) => `/movie/${id}?api_key=${API_KEY}&language=en-US`,
+    mediaDetails: builder.query({
+      query: (args) => {
+        const { type, id } = args;
+        return `/${type}/${id}?api_key=${API_KEY}&language=en-US`;
+      },
+    }),
+    tvSeasonDetails: builder.query({
+      query: (args) => {
+        const { id, seasonNumber } = args;
+        return `https://api.themoviedb.org/3/tv/${id}/season/${seasonNumber}?api_key=c363098c1cdead4988543975d00dcfed&language=en-US`;
+      },
     }),
   }),
 });
@@ -69,9 +78,10 @@ export const {
   useMediaPopularQuery,
   useFreeToWatchQuery,
   useUpComingMediaQuery,
-  useMovieDetailsQuery,
+  useMediaDetailsQuery,
   useMediaWatchProvidersQuery,
   useMediaCastQuery,
   useSimilarMediaQuery,
   useMediaVideosQuery,
+  useTvSeasonDetailsQuery,
 } = mediaApi;

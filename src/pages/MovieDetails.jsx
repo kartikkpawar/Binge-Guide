@@ -18,9 +18,9 @@ import Modal from "@mui/material/Modal";
 import { useNavigate, useParams } from "react-router";
 import {
   useMediaCastQuery,
+  useMediaDetailsQuery,
   useMediaVideosQuery,
   useMediaWatchProvidersQuery,
-  useMovieDetailsQuery,
   useSimilarMediaQuery,
 } from "../app/mediaApi";
 
@@ -51,11 +51,12 @@ const MovieDetails = () => {
 
   const navigate = useNavigate();
   const params = useParams();
-  const { data: details, isLoading: isDetailsLoading } = useMovieDetailsQuery(
-    params.id
-  );
+  const { data: details, isLoading: isDetailsLoading } = useMediaDetailsQuery({
+    type: "movie",
+    id: params.id,
+  });
   const { data: watchProviders, isLoading: isWatchProvidersLoading } =
-    useMediaWatchProvidersQuery({ type: "movie" });
+    useMediaWatchProvidersQuery({ type: "movie", id: params.id });
   const { data: cast, isLoading: isCastLoading } = useMediaCastQuery({
     type: "movie",
     id: params.id,
@@ -72,7 +73,9 @@ const MovieDetails = () => {
     });
   const Trailer =
     !isMoviesVideosLoading &&
-    moviesVideos.results.find((video) => video.type === "Trailer");
+    moviesVideos.results.find(
+      (video) => video.type === "Trailer" && video.site === "YouTube"
+    );
 
   return (
     !isDetailsLoading && (
@@ -181,7 +184,10 @@ const MovieDetails = () => {
               ))}
             </div>
             <div className="mt-5 flex items-center">
-              <div className="group flex items-center rounded-full  w-52 h-16 justify-center px-10 text-white hover:text-proj-red hover:bg-white cursor-pointer select-none text-2xl bg-proj-red">
+              <div
+                className="group flex items-center rounded-full  w-52 h-16 justify-center px-10 text-white hover:text-proj-red hover:bg-white cursor-pointer select-none text-2xl bg-proj-red"
+                onClick={() => setModalOpen(true)}
+              >
                 <BsFillPlayFill className="text-2xl" />
                 <span className="ml-3 font-semibold">Watch</span>
               </div>

@@ -7,7 +7,7 @@ const PopularShow = ({ name, url, populartiy, type, id }) => {
   const navigate = useNavigate();
   const handleOnClick = () => {
     if (type) {
-      return navigate(`/tv-detail/${id}`);
+      return navigate(`/tv-detail/${id}/1`);
     }
     return navigate(`/movie-detail/${id}`);
   };

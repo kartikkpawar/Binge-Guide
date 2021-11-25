@@ -6,7 +6,7 @@ const RecommendeMovies = ({ image, name, type, id }) => {
   const navigate = useNavigate();
   const onClickHandler = () => {
     if (type) {
-      return navigate(`/tv-detail/${id}`);
+      return navigate(`/tv-detail/${id}/1`);
     }
     return navigate(`/movie-detail/${id}`);
   };
