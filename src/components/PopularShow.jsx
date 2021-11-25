@@ -1,6 +1,6 @@
 import React from "react";
 import { MdOutlineFavorite } from "react-icons/md";
-import { IoMdAdd } from "react-icons/io";
+import { BsEye } from "react-icons/bs";
 
 const PopularShow = ({ name, url }) => {
   return (
@@ -30,7 +30,7 @@ const PopularShow = ({ name, url }) => {
             <MdOutlineFavorite className="" />
           </button>
           <button className="bg-gray-500 bg-opacity-50  rounded-md text-md 2xl:text-lg h-10 2xl:h-12 w-max px-4 ml-3">
-            <IoMdAdd />
+            <BsEye />
           </button>
         </div>
       </div>

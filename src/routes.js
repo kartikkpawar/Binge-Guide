@@ -5,6 +5,7 @@ import ActorDetail from "./pages/ActorDetail";
 import Signin from "./pages/Auth/Signin";
 import Signup from "./pages/Auth/Signup";
 import MovieDetails from "./pages/MovieDetails";
+import ShowDetails from "./pages/ShowDetails";
 const RoutesManager = () => {
   return (
     <div>
@@ -12,11 +13,11 @@ const RoutesManager = () => {
         <Routes>
           <Route exact path="/signin" element={<Signin />} />
           <Route exact path="/signup" element={<Signup />} />
-          <Route exact path="/tv-detail/:id" element={<MovieDetails />} />
+
           <Route
             exact
             path="/tv-detail/:id/:season"
-            element={<MovieDetails />}
+            element={<ShowDetails />}
           />
           <Route exact path="/movie-detail/:id" element={<MovieDetails />} />
           <Route exact path="/actor-detail/:id" element={<ActorDetail />} />

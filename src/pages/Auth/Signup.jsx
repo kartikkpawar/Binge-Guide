@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { GoogleLoginButton } from "react-social-login-buttons";
 import { toast, ToastContainer } from "react-toastify";
 import { auth } from "../../firebase";
 import { signInUser } from "../../app/auth";

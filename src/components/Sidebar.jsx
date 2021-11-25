@@ -9,10 +9,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeTab } from "../app/tabs";
 import { signOutUSer } from "../app/auth";
 import { useNavigate } from "react-router";
+import { auth } from "../firebase";
 
 const Sidebar = () => {
   const authState = useSelector((state) => state.auth);
-  console.log(authState);
+
   const navigate = useNavigate();
 
   const [tabs, setTabs] = useState({
@@ -263,7 +264,13 @@ const Sidebar = () => {
         <div className="ml-5 mt-4 2xl:mt-6">
           <div className="text-lg 2xl:text-xl text-gray-500 flex items-center mt-6 menuHover">
             {authState.auth ? (
-              <div className="flex" onClick={() => dispatch(signOutUSer())}>
+              <div
+                className="flex"
+                onClick={() => {
+                  auth.signOut();
+                  dispatch(signOutUSer());
+                }}
+              >
                 <FiLogOut className="text-xl 2xl:text-2xl menuIcon" />
                 <span className="ml-2 text-lg 2xl:text-xl font-semibold menuText">
                   Sign Out
