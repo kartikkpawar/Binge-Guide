@@ -35,7 +35,7 @@ const MoviesSidebar = ({
         className="h-full rounded-lg"
       />
       <div className="flex flex-col ml-2 text-white h-full">
-        <span className="font-light 2xl:font-normal text-md">{name}</span>
+        <span className="font-light 2xl:font-normal text-sm">{name}</span>
 
         <div className="h-full flex items-center">
           <div className="h-8 2xl:h-10 w-8 2xl:w-10">
