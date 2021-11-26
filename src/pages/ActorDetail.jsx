@@ -69,7 +69,7 @@ const ActorDetail = () => {
 
                 {actorSocial.instagram_id && (
                   <a
-                    href={`https://www.instagram.com/${actorSocial.instagram_id}`}
+                    href={`https://www.instagram.com/${actorSocial.instagram_id}/`}
                     target="_blank"
                     rel="noreferrer"
                   >
