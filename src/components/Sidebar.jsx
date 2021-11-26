@@ -269,6 +269,7 @@ const Sidebar = () => {
                 onClick={() => {
                   auth.signOut();
                   dispatch(signOutUSer());
+                  localStorage.removeItem("userAuth");
                 }}
               >
                 <FiLogOut className="text-xl 2xl:text-2xl menuIcon" />

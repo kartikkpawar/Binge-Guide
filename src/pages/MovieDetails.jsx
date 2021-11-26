@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { videosData } from "../trailerData";
 import { IoMdArrowBack } from "react-icons/io";
 import { BsFillPlayFill } from "react-icons/bs";
 import { AiTwotoneHeart } from "react-icons/ai";
@@ -15,7 +14,7 @@ import moment from "moment";
 import humanizeDuration from "humanize-duration";
 import MoviesSidebar from "../components/MoviesSidebar";
 import Modal from "@mui/material/Modal";
-import { useNavigate, useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import {
   useMediaCastQuery,
   useMediaDetailsQuery,
@@ -23,8 +22,15 @@ import {
   useMediaWatchProvidersQuery,
   useSimilarMediaQuery,
 } from "../app/mediaApi";
+import { useSelector } from "react-redux";
+import { db } from "../firebase";
+import { toast, ToastContainer } from "react-toastify";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const MovieDetails = () => {
+  const appUrl = process.env.REACT_APP_WEB_URL;
+  const authState = useSelector((state) => state.auth);
+
   const recommendationMessage = (vote) => {
     if (vote * 10 > 70) {
       return (
@@ -76,7 +82,53 @@ const MovieDetails = () => {
     moviesVideos.results.find(
       (video) => video.type === "Trailer" && video.site === "YouTube"
     );
+  const notify = (msg) => {
+    return toast.error(msg, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
 
+  const handleWatchlist = (id, name, type, poster) => {
+    console.log(id, name, type, poster);
+    authState.auth.userId
+      ? db
+          .collection(authState.auth.userId)
+          .doc("user")
+          .collection("watchlist")
+          .add({
+            id,
+            name,
+            type,
+            image_path: poster,
+          })
+          .then((res) => notify("Added to Watchlist"))
+          .catch((err) => notify("Something went wrong"))
+      : notify("Sign In to continue");
+  };
+  const handleFavourites = (id, name, type, poster) => {
+    authState.auth.userId
+      ? db
+          .collection(authState.auth.userId)
+          .doc("user")
+          .collection("favourites")
+          .add({
+            id,
+            name,
+            type,
+            image_path: poster,
+          })
+          .then((res) => notify("Added to Favourites"))
+          .catch((err) => notify("Something went wrong"))
+      : notify("Sign In to continue");
+  };
+  const location = useLocation();
   return (
     !isDetailsLoading && (
       <div className="bg-black-background h-screen w-full overflow-scroll hideScrollBar">
@@ -161,7 +213,7 @@ const MovieDetails = () => {
               </span>
               {!isWatchProvidersLoading && (
                 <div className="flex mt-3 flex-wrap">
-                  {watchProviders.results["US"].buy.map((provider) => (
+                  {watchProviders?.results["US"]?.buy?.map((provider) => (
                     <img
                       src={`https://image.tmdb.org/t/p/original${provider.logo_path}`}
                       alt={provider.provider_name}
@@ -191,17 +243,42 @@ const MovieDetails = () => {
                 <BsFillPlayFill className="text-2xl" />
                 <span className="ml-3 font-semibold">Watch</span>
               </div>
-              <div className="group flex items-center border-2 rounded-full border-gray-300 hover:border-red-600 w-max p-4 justify-center text-white select-none text-2xl mx-3 font-semibold">
+              <div
+                className="group flex items-center border-2 rounded-full border-gray-300 hover:border-red-600 w-max p-4 justify-center text-white select-none text-2xl mx-3 font-semibold"
+                onClick={() => {
+                  handleFavourites(
+                    details.id,
+                    details.title,
+                    "movies",
+                    details.poster_path
+                  );
+                }}
+              >
                 <span className="text-red-600 group-hover:text-white">
                   <AiTwotoneHeart />
                 </span>
               </div>{" "}
               <div className="group flex items-center border-2 rounded-full border-gray-300 hover:border-red-600 w-max p-4 justify-center text-white select-none text-2xl mx-3 font-semibold">
                 <span className="text-red-600 group-hover:text-white">
-                  <FaShareAlt />
+                  <CopyToClipboard
+                    text={`${appUrl}${location.pathname}`}
+                    onCopy={() => notify("Copied Successfully")}
+                  >
+                    <FaShareAlt />
+                  </CopyToClipboard>
                 </span>
               </div>{" "}
-              <div className="group flex items-center border-2 rounded-full border-gray-300 hover:border-red-600 w-max p-4 justify-center text-white select-none text-2xl mx-3 font-semibold">
+              <div
+                className="group flex items-center border-2 rounded-full border-gray-300 hover:border-red-600 w-max p-4 justify-center text-white select-none text-2xl mx-3 font-semibold"
+                onClick={() =>
+                  handleWatchlist(
+                    details.id,
+                    details.title,
+                    "movies",
+                    details.poster_path
+                  )
+                }
+              >
                 <span className="text-red-600 group-hover:text-white">
                   <BsPlusLg />
                 </span>
@@ -279,13 +356,14 @@ const MovieDetails = () => {
           <div className="mx-auto my-auto w-3/4 h-3/4 outline-none">
             <iframe
               className="h-full w-full"
-              src={`https://www.youtube.com/embed/${Trailer.key}`}
+              src={`https://www.youtube.com/embed/${Trailer?.key}`}
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             ></iframe>
           </div>
         </Modal>
+        <ToastContainer />
       </div>
     )
   );

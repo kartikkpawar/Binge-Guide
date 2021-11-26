@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "./components/Sidebar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Home from "./pages/Home";
 import Discover from "./pages/Discover";
 import Watchlist from "./pages/Watchlist";
 import Favourites from "./pages/Favourites";
 import ComingSoon from "./pages/ComingSoon";
 import FreeWatch from "./pages/FreeWatch";
+import { loadHome } from "./app/tabs";
+import { signInUser } from "./app/auth";
 const App = () => {
   const tabs = useSelector((state) => state.tabs);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadHome);
+
+    const auth = localStorage.getItem("userAuth");
+    const authVal = auth ? JSON.parse(auth) : false;
+    authVal &&
+      dispatch(
+        signInUser({
+          email: authVal.email,
+          name: authVal.name,
+          userId: authVal.userId,
+        })
+      );
+  }, []);
 
   return (
     <div className="flex bg-black-background">

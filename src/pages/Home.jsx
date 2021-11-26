@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { BsSearch, BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import MoviesSidebar from "../components/MoviesSidebar";
 import PopularShow from "../components/PopularShow";
@@ -18,12 +18,15 @@ import {
 } from "../app/mediaApi";
 
 import { tvGenersHelper, movieGenersHelper } from "../genres";
+import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const Home = () => {
   const tabs = useSelector((state) => state.tabs);
 
   const artistRef = useRef();
   const recommendationRef = useRef();
+  const [searchInput, setSearchInput] = useState("");
 
   const handelScroll = (data) => {
     console.log(data[0], data[1]);
@@ -36,6 +39,19 @@ const Home = () => {
     } else {
       recommendationRef.current.scrollBy(90, 0);
     }
+  };
+
+  const notify = (msg) => {
+    return toast.error(msg, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   };
 
   const { data: popularActors, isLoading: isActorLoading } =
@@ -52,6 +68,12 @@ const Home = () => {
     useMediaTrendingDayQuery({
       type: tabs.tvShows ? "tv" : "movie",
     });
+  const navigate = useNavigate();
+  const handleSearch = () => {
+    const re = new RegExp(" ", "g");
+    const str = searchInput.replace(re, "%20");
+    navigate(`/search?search=${str}`);
+  };
 
   return (
     <div className="h-full flex">
@@ -64,9 +86,9 @@ const Home = () => {
             </div>
           ) : (
             <Carousel
-              // autoPlay={true}
+              autoPlay={true}
               interval={5000}
-              transitionTime={5000}
+              transitionTime={3000}
               infiniteLoop={true}
               renderArrowNext={() => false}
               renderArrowPrev={() => false}
@@ -81,6 +103,8 @@ const Home = () => {
                   type={tabs.tvShows}
                   id={show.id}
                   key={show.id}
+                  poster={show.poster_path}
+                  func_notify={(msg) => notify(msg)}
                   geners={
                     tabs.tvShows
                       ? tvGenersHelper(show.genre_ids)
@@ -191,6 +215,9 @@ const Home = () => {
             type="text"
             className="bg-transparent p-2 w-full focus:outline-none text-md"
             placeholder="Search"
+            onChange={(e) => setSearchInput(e.target.value)}
+            value={searchInput}
+            onKeyPress={(e) => e.key === "Enter" && handleSearch()}
           />
         </div>
         <span className="mt-8 text-xl font-normal">
@@ -220,9 +247,8 @@ const Home = () => {
             )
           )}
         </div>
-        <span className="mt-3 text-xl font-normal">Watched</span>
-        <div className="mt-5 flex flex-col justify-center"></div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

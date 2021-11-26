@@ -35,6 +35,14 @@ const Signin = () => {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((userAuth) => {
+        localStorage.setItem(
+          "userAuth",
+          JSON.stringify({
+            email: userAuth.user.email,
+            name: userAuth.user.displayName,
+            userId: userAuth.user.uid,
+          })
+        );
         dispatch(
           signInUser({
             email: userAuth.user.email,
@@ -51,6 +59,14 @@ const Signin = () => {
     auth
       .signInWithPopup(googleProvider)
       .then((userAuth) => {
+        localStorage.setItem(
+          "userAuth",
+          JSON.stringify({
+            email: userAuth.user.email,
+            name: userAuth.user.displayName,
+            userId: userAuth.user.uid,
+          })
+        );
         dispatch(
           signInUser({
             email: userAuth.user.email,

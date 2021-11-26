@@ -1,23 +1,43 @@
 import React, { useRef } from "react";
-import {
-  BsSearch,
-  BsChevronLeft,
-  BsChevronRight,
-  BsChevronUp,
-  BsChevronDown,
-} from "react-icons/bs";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import MoviesShowsToggle from "../components/MoviesShowsToggle";
 import GlobalMovie from "../components/GlobalMovie";
+import { useDiscoverMediaQuery, useOttListQuery } from "../app/mediaApi";
+import { useSelector } from "react-redux";
 
-const looper = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
+import { toast, ToastContainer } from "react-toastify";
+
 const Discover = () => {
+  const tabs = useSelector((state) => state.tabs);
+
   const ottRef = useRef();
   const handelScroll = (direction) => {
-    direction === "left" && ottRef.current.scrollBy(120, 0);
-    direction === "right" && ottRef.current.scrollBy(-120, 0);
+    direction === "left" && ottRef.current.scrollBy(-120, 0);
+    direction === "right" && ottRef.current.scrollBy(120, 0);
   };
-  // const options = ["Action", "Sci-Fi", "Crime"];
-  // const defaultOption = options[0];
+
+  const { data: searchResults, isLoading: isSearchResultLoading } =
+    useDiscoverMediaQuery({
+      search: "",
+      type: tabs.tvShows ? "tv" : "movie",
+    });
+
+  const { data: ottList, isLoading: isOttListLoading } = useOttListQuery(
+    tabs.tvShows ? "tv" : "movie"
+  );
+  const notify = (msg) => {
+    return toast.error(msg, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
   return (
     <div className="h-full pt-8 flex w-full flex-col">
       <MoviesShowsToggle />
@@ -51,45 +71,36 @@ const Discover = () => {
             className="flex overflow-x-auto hideScrollBar mt-4 select-none"
             ref={ottRef}
           >
-            {looper.map((ott) => (
-              <img
-                src="https://image.tmdb.org/t/p/original/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg"
-                alt=""
-                className="h-max w-max rounded-lg mr-3 border border-white"
+            {!isOttListLoading &&
+              ottList.results.map(
+                (ott) =>
+                  ott.display_priority < 10 && (
+                    <img
+                      src={`https://image.tmdb.org/t/p/original${ott.logo_path}`}
+                      alt={ott.provider_name}
+                      className="h-max w-max rounded-lg mr-3"
+                    />
+                  )
+              )}
+          </div>
+        </div>
+
+        <div className="flex flex-wrap mt-12 justify-between pr-8">
+          {!isSearchResultLoading &&
+            searchResults?.results?.map((show) => (
+              <GlobalMovie
+                buttons
+                type={tabs.tvShows}
+                name={show.title || show.name}
+                date={tabs.tvShows ? show.first_air_date : show.release_date}
+                image={show.poster_path}
+                id={show.id}
+                func_notify={(msg) => notify(msg)}
               />
             ))}
-          </div>
-        </div>
-        <div className="flex mt-12">
-          <div className="flex items-center border-b-2 border-gray-500 w-3/12 p-0.5">
-            <BsSearch className="text-xl mx-2 text-gray-500" />
-            <input
-              type="text"
-              className="bg-transparent p-2 w-full focus:outline-none text-md"
-              placeholder="Enter keywords"
-            />
-          </div>
-
-          {/* <div className="flex items-center border-b-2 border-gray-500 w-3/12  p-1 pl-3 ml-6">
-            <Dropdown
-              options={options}
-              value={defaultOption}
-              placeholder="Genre"
-              className="w-full dropdownStyle"
-              arrowClosed={<BsChevronDown />}
-              arrowOpen={<BsChevronUp />}
-            />
-          </div> */}
-          <button className="h-12 ml-6 bg-proj-red rounded-lg text-lg h-max px-6 font-semibold">
-            Search
-          </button>
-        </div>
-        <div className="flex flex-wrap mt-12 justify-between pr-8">
-          {looper.map((item) => (
-            <GlobalMovie buttons />
-          ))}
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

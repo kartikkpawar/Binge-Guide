@@ -84,3 +84,6 @@ code {
       center no-repeat;
   background-size: cover;
 }
+.smallText {
+  font-size: 10px;
+}

@@ -67,8 +67,22 @@ export const mediaApi = createApi({
     tvSeasonDetails: builder.query({
       query: (args) => {
         const { id, seasonNumber } = args;
-        return `https://api.themoviedb.org/3/tv/${id}/season/${seasonNumber}?api_key=c363098c1cdead4988543975d00dcfed&language=en-US`;
+        return `/tv/${id}/season/${seasonNumber}?api_key=${API_KEY}&language=en-US`;
       },
+    }),
+    searchQuery: builder.query({
+      query: (query) =>
+        `/search/multi?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`,
+    }),
+    discoverMedia: builder.query({
+      query: (args) => {
+        const { search, type } = args;
+        return `/discover/${type}?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_keywords=${search}&with_watch_monetization_types=flatrate`;
+      },
+    }),
+    ottList: builder.query({
+      query: (type) =>
+        `/watch/providers/${type}?api_key=${API_KEY}&language=en-US`,
     }),
   }),
 });
@@ -84,4 +98,7 @@ export const {
   useSimilarMediaQuery,
   useMediaVideosQuery,
   useTvSeasonDetailsQuery,
+  useSearchQueryQuery,
+  useDiscoverMediaQuery,
+  useOttListQuery,
 } = mediaApi;

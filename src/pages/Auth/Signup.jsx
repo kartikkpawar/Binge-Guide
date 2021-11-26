@@ -59,6 +59,11 @@ const Signup = () => {
             displayName: name,
           })
           .then(() => {
+            JSON.stringify({
+              email: userAuth.user.email,
+              name: userAuth.user.displayName,
+              userId: userAuth.user.uid,
+            });
             dispatch(
               signInUser({
                 email: userAuth.user.email,

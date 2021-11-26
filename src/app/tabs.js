@@ -19,9 +19,19 @@ export const tabsSlice = createSlice({
       state[action.payload.tabName] = true;
       state[action.payload.currTab] = false;
     },
+    loadHome: (state) => {
+      state.home = true;
+      state.freeWatch = false;
+      state.discover = false;
+      state.comingSoon = false;
+      state.favourites = false;
+      state.watchlist = false;
+      state.tvShows = true;
+      state.movies = false;
+    },
   },
 });
 
-export const { changeTab } = tabsSlice.actions;
+export const { changeTab, loadHome } = tabsSlice.actions;
 
 export default tabsSlice.reducer;

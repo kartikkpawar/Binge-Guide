@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+
 import { useNavigate } from "react-router";
 
 const RecommendeMovies = ({ image, name, type, id }) => {

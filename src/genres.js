@@ -43,16 +43,17 @@ const tvGenersHelper = (id) => {
 
   id.forEach((i) => {
     const temp = tvGeners.find((g) => g.id === i);
-    valArray.push(temp.name);
+    valArray.push(temp?.name);
   });
 
   return valArray;
 };
 const movieGenersHelper = (id) => {
+  console.log(id);
   const valArray = [];
   id.forEach((i) => {
     const temp = movieGeners.find((g) => g.id === i);
-    valArray.push(temp.name);
+    valArray.push(temp?.name ? temp?.name : "");
   });
   return valArray;
 };

@@ -38,7 +38,7 @@ const MoviesSidebar = ({
         <span className="font-light 2xl:font-normal text-md">{name}</span>
 
         <div className="h-full flex items-center">
-          <div className="h-10 w-10">
+          <div className="h-8 2xl:h-10 w-8 2xl:w-10">
             <CircularProgressbarWithChildren
               value={votesAvg * 10}
               background={false}
@@ -47,16 +47,16 @@ const MoviesSidebar = ({
                 pathColor: "#e21717",
               })}
             >
-              <span className="text-white font-bold text-xs">
+              <span className="text-white font-bold smallText 2xl:text-xs">
                 {Math.round(votesAvg * 10)}%
               </span>
             </CircularProgressbarWithChildren>
           </div>
           <div className="flex justify-center ml-3 flex-col">
-            <span className="font-thin text-sm">
+            <span className="font-thin text-xs 2xl:text-sm">
               {SimplifyNumber(votes)} Votes
             </span>
-            <span className="font-thin text-sm">
+            <span className="font-thin text-xs 2xl:text-sm">
               {moment(date).format("YYYY")}
             </span>
           </div>

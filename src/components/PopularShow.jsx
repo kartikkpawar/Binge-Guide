@@ -2,15 +2,60 @@ import React from "react";
 import { MdOutlineFavorite } from "react-icons/md";
 import { BsEye } from "react-icons/bs";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
+import { db } from "../firebase";
 
-const PopularShow = ({ name, url, populartiy, type, id, geners }) => {
-  console.log(geners);
+const PopularShow = (
+  { name, url, populartiy, type, id, geners, poster, func_notify },
+  props
+) => {
+  const authState = useSelector((state) => state.auth);
+
   const navigate = useNavigate();
   const handleOnClick = () => {
     if (type) {
       return navigate(`/tv-detail/${id}/1`);
     }
     return navigate(`/movie-detail/${id}`);
+  };
+
+  const handleWatchlist = (type) => {
+    if (!authState.auth) {
+      return func_notify("SignIn to Continue");
+    }
+
+    authState.auth.userId &&
+      db
+        .collection(authState.auth.userId)
+        .doc("user")
+        .collection("watchlist")
+        .add({
+          id,
+          name,
+          type,
+          image_path: poster,
+        })
+        .then((res) => func_notify("Added to watchlist"))
+        .catch((err) => func_notify("Something went wrong"));
+  };
+  const handleFavourites = (type) => {
+    if (!authState.auth) {
+      return func_notify("SignIn to Continue");
+    }
+
+    authState.auth.userId &&
+      db
+        .collection(authState.auth.userId)
+        .doc("user")
+        .collection("favourites")
+        .add({
+          id,
+          name,
+          type,
+          image_path: poster,
+        })
+        .then((res) => func_notify("Added to Favourites"))
+        .catch((err) => func_notify("Something went wrong"));
   };
   return (
     <div
@@ -32,10 +77,16 @@ const PopularShow = ({ name, url, populartiy, type, id, geners }) => {
         </div>
 
         <div className="mt-3 flex items-center">
-          <button className="h-10 2xl:h-12 bg-proj-red rounded-md text-md 2xl:text-lg h-max w-max px-6 font-semibold ">
+          <button
+            className="h-10 2xl:h-12 bg-proj-red rounded-md text-md 2xl:text-lg h-max w-max px-6 font-semibold "
+            onClick={() => handleWatchlist(type ? "tv" : "movies")}
+          >
             Watchlist
           </button>
-          <button className="bg-gray-500 bg-opacity-50  rounded-md text-md 2xl:text-lg h-10 2xl:h-12 w-max px-4 ml-3">
+          <button
+            className="bg-gray-500 bg-opacity-50  rounded-md text-md 2xl:text-lg h-10 2xl:h-12 w-max px-4 ml-3"
+            onClick={() => handleFavourites(type ? "tv" : "movies")}
+          >
             <MdOutlineFavorite className="" />
           </button>
           <button
