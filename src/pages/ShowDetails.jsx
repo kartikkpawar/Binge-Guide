@@ -145,7 +145,7 @@ const ShowDetails = () => {
         <div
           className="h-4/6 rounded-bl-3xl rounded-br-3xl p-8 bg-cover bg-center"
           style={{
-            background: `linear-gradient(180deg, rgba(255,255,255,0.50) 0%, rgba(212,212,220,0) 0%, rgba(0,0,0,0.8) 91%), url(https://image.tmdb.org/t/p/original${details.backdrop_path})`,
+            background: `linear-gradient(180deg, rgba(255,255,255,0.50) 0%, rgba(212,212,220,0) 0%, rgba(0,0,0,0.8) 91%), url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${details.backdrop_path})`,
           }}
         >
           <div className="flex items-center">
@@ -204,7 +204,7 @@ const ShowDetails = () => {
           <div className="w-1/5 flex flex-col h-full items-center">
             <div className="h-96 mr-3">
               <img
-                src={`https://image.tmdb.org/t/p/original${details.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${details.poster_path}`}
                 alt=""
                 className="h-full rounded-md"
               />

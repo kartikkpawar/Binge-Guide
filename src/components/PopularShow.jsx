@@ -62,7 +62,7 @@ const PopularShow = (
       className="h-full p-4 w-11/12 rounded-3xl"
       style={{
         backgroundSize: "cover",
-        backgroundImage: `url(https://image.tmdb.org/t/p/original${url})`,
+        backgroundImage: `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${url})`,
       }}
     >
       <div className="mt-28 2xl:mt-48 ml-12 bg-black w-max px-4 py-4 rounded-xl bg-opacity-60">

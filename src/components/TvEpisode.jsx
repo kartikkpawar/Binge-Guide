@@ -12,7 +12,7 @@ const TvEpisode = ({ name, date, overview, num, image }) => {
   return (
     <div className="w-full h-36 mb-4 p-2 flex cursor-pointer bg-gray-900 bg-opacity-80 rounded-lg">
       <img
-        src={`https://image.tmdb.org/t/p/original${image}`}
+        src={`https://image.tmdb.org/t/p/w154${image}`}
         alt=""
         className="h-full rounded-md"
       />

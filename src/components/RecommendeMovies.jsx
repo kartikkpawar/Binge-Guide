@@ -15,7 +15,7 @@ const RecommendeMovies = ({ image, name, type, id }) => {
     <div onClick={onClickHandler} className="cursor-pointer">
       <div className="h-52 2xl:h-60 w-36 2xl:w-44 mr-3 relative group">
         <img
-          src={`https://image.tmdb.org/t/p/original${image}`}
+          src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${image}`}
           alt={name}
           className="h-full w-full rounded-lg"
         />

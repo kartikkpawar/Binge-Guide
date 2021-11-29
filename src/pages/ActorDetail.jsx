@@ -41,7 +41,7 @@ const ActorDetail = () => {
         <div className="h-max p-4 flex mt-2 w-full">
           <div className="h-full w-2/12">
             <img
-              src={`https://image.tmdb.org/t/p/original${actor.profile_path}`}
+              src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${actor.profile_path}`}
               alt={actor.name}
               className="h-96 w-max rounded-lg"
             />
@@ -141,7 +141,7 @@ const ActorDetail = () => {
                           }
                         >
                           <img
-                            src={`https://image.tmdb.org/t/p/original${popular.poster_path}`}
+                            src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${popular.poster_path}`}
                             alt=""
                             className="h-full w-max rounded-xl mb-1"
                           />

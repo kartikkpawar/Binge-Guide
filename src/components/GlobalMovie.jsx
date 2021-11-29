@@ -77,7 +77,7 @@ const GlobalMovie = ({
       onClick={handleOnClick}
     >
       <img
-        src={`https://image.tmdb.org/t/p/original${image}`}
+        src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${image}`}
         alt=""
         className="h-full w-full rounded-sm"
       />
