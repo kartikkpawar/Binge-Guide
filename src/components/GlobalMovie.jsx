@@ -73,7 +73,7 @@ const GlobalMovie = ({
   };
   return (
     <div
-      className="h-96 ml-6 mb-6 relative movieHoverContainer cursor-pointer"
+      className="h-96 w-64 ml-6 mb-6 relative movieHoverContainer cursor-pointer"
       onClick={handleOnClick}
     >
       <img

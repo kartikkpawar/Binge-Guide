@@ -27,7 +27,7 @@ const ComingSoon = () => {
                   key={show.id}
                   id={show.id}
                   type={false}
-                  name={tabs.tvShows ? show.name : show.title}
+                  name={show.title}
                   date={moment(show.release_date).format("ll")}
                   image={show.poster_path}
                   buttons
