@@ -4,6 +4,7 @@ import { useUpComingMediaQuery } from "../app/mediaApi";
 import GlobalMovie from "../components/GlobalMovie";
 import Loader from "react-loader-spinner";
 import moment from "moment";
+import { toast, ToastContainer } from "react-toastify";
 
 const ComingSoon = () => {
   const tabs = useSelector((state) => state.tabs);
@@ -11,7 +12,18 @@ const ComingSoon = () => {
   const { data, isLoading } = useUpComingMediaQuery({
     type: "movie",
   });
-  console.log(data);
+  const notify = (msg) => {
+    return toast.error(msg, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
   return (
     <div className="h-full pt-8 flex w-full flex-col overflow-scroll hideScrollBar pr-8">
       <div className="flex w-full h-full flex-wrap mt-12 justify-between pr-8">
@@ -31,11 +43,13 @@ const ComingSoon = () => {
                   date={moment(show.release_date).format("ll")}
                   image={show.poster_path}
                   buttons
+                  func_notify={(msg) => notify(msg)}
                 />
               )
           )
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 };

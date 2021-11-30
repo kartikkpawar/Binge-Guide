@@ -96,37 +96,64 @@ const MovieDetails = () => {
   };
 
   const handleWatchlist = (id, name, type, poster) => {
-    console.log(id, name, type, poster);
-    authState.auth.userId
-      ? db
-          .collection(authState.auth.userId)
-          .doc("user")
-          .collection("watchlist")
-          .add({
-            id,
-            name,
-            type,
-            image_path: poster,
-          })
-          .then((res) => notify("Added to Watchlist"))
-          .catch((err) => notify("Something went wrong"))
-      : notify("Sign In to continue");
+    handleDuplicate("w", id)
+      .then((res) => {
+        if (!res) {
+          authState.auth.userId
+            ? db
+                .collection(authState.auth.userId)
+                .doc("user")
+                .collection("watchlist")
+                .add({
+                  id,
+                  name,
+                  type,
+                  image_path: poster,
+                })
+                .then((res) => notify("Added to Watchlist"))
+                .catch((err) => notify("Something went wrong"))
+            : notify("Sign In to continue");
+        } else {
+          return notify("Already added");
+        }
+      })
+      .catch();
   };
   const handleFavourites = (id, name, type, poster) => {
-    authState.auth.userId
-      ? db
-          .collection(authState.auth.userId)
-          .doc("user")
-          .collection("favourites")
-          .add({
-            id,
-            name,
-            type,
-            image_path: poster,
-          })
-          .then((res) => notify("Added to Favourites"))
-          .catch((err) => notify("Something went wrong"))
-      : notify("Sign In to continue");
+    handleDuplicate("f", id)
+      .then((res) => {
+        if (!res) {
+          authState.auth.userId
+            ? db
+                .collection(authState.auth.userId)
+                .doc("user")
+                .collection("favourites")
+                .add({
+                  id,
+                  name,
+                  type,
+                  image_path: poster,
+                })
+                .then((res) => notify("Added to Favourites"))
+                .catch((err) => notify("Something went wrong"))
+            : notify("Sign In to continue");
+        } else {
+          return notify("Already added");
+        }
+      })
+      .catch((err) => notify("Something wen wrong"));
+  };
+  const handleDuplicate = async (fType, mediaId) => {
+    return await db
+      .collection(authState.auth.userId)
+      .doc("user")
+      .collection(fType === "w" ? "watchlist" : "favourites")
+      .where("id", "==", mediaId)
+      .get()
+      .then((snapshot) => {
+        return snapshot.docs.length > 0 ? true : false;
+      })
+      .catch((err) => notify("Something went wrong"));
   };
   const location = useLocation();
   return (

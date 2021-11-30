@@ -49,28 +49,50 @@ const GlobalMovie = ({
         .then((res) => func_notify("Removed Successfully", true))
         .catch((err) => func_notify("Something went wrong", false));
   };
-  const handleAdd = (e, type) => {
+  const handleAdd = (e, types) => {
     e.stopPropagation();
     if (!authState.auth) {
       return func_notify("SignIn to Continue");
     }
-
-    authState.auth.userId &&
-      db
-        .collection(authState.auth.userId)
-        .doc("user")
-        .collection(type === "w" ? "watchlist" : "favourites")
-        .add({
-          id,
-          name,
-          type: type ? "tv" : "movie",
-          image_path: image,
-        })
-        .then((res) =>
-          func_notify(`Added to ${type === "w" ? "Watchlist" : "Favourites"}`)
-        )
-        .catch((err) => func_notify("Something went wrong"));
+    handleDuplicate(type, id)
+      .then((res) => {
+        if (!res) {
+          authState.auth.userId &&
+            db
+              .collection(authState.auth.userId)
+              .doc("user")
+              .collection(types === "w" ? "watchlist" : "favourites")
+              .add({
+                id,
+                name,
+                type: types ? "tv" : "movie",
+                image_path: image,
+              })
+              .then((res) =>
+                func_notify(
+                  `Added to ${types === "w" ? "Watchlist" : "Favourites"}`
+                )
+              )
+              .catch((err) => func_notify("Something went wrong"));
+        } else {
+          return func_notify("Already Added");
+        }
+      })
+      .catch((err) => func_notify("Something went wrong"));
   };
+  const handleDuplicate = async (fType, mediaId) => {
+    return await db
+      .collection(authState.auth.userId)
+      .doc("user")
+      .collection(fType === "w" ? "watchlist" : "favourites")
+      .where("id", "==", mediaId)
+      .get()
+      .then((snapshot) => {
+        return snapshot.docs.length > 0 ? true : false;
+      })
+      .catch((err) => func_notify("Something went wrong"));
+  };
+  // FIXME media tv / movie showing wrong
   return (
     <div
       className="h-96 w-64 ml-6 mb-6 relative movieHoverContainer cursor-pointer"

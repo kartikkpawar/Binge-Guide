@@ -36,6 +36,7 @@ const Favourites = () => {
       theme: "dark",
     });
   };
+  console.log(favs);
   return (
     <div className="h-full pt-8 flex w-full flex-col overflow-scroll hideScrollBar">
       <span className=" text-3xl uppercase ml-8 mt-8">Favourites</span>

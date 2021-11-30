@@ -5,10 +5,16 @@ import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { db } from "../firebase";
 
-const PopularShow = (
-  { name, url, populartiy, type, id, geners, poster, func_notify },
-  props
-) => {
+const PopularShow = ({
+  name,
+  url,
+  populartiy,
+  type,
+  id,
+  geners,
+  poster,
+  func_notify,
+}) => {
   const authState = useSelector((state) => state.auth);
 
   const navigate = useNavigate();
@@ -19,43 +25,71 @@ const PopularShow = (
     return navigate(`/movie-detail/${id}`);
   };
 
-  const handleWatchlist = (type) => {
+  const handleWatchlist = (typeS) => {
     if (!authState.auth) {
       return func_notify("SignIn to Continue");
     }
-
-    authState.auth.userId &&
-      db
-        .collection(authState.auth.userId)
-        .doc("user")
-        .collection("watchlist")
-        .add({
-          id,
-          name,
-          type,
-          image_path: poster,
-        })
-        .then((res) => func_notify("Added to watchlist"))
-        .catch((err) => func_notify("Something went wrong"));
+    handleDuplicate("w", id)
+      .then((res) => {
+        if (!res) {
+          authState.auth.userId &&
+            db
+              .collection(authState.auth.userId)
+              .doc("user")
+              .collection("watchlist")
+              .add({
+                id,
+                name,
+                type: typeS,
+                image_path: poster,
+              })
+              .then((res) => func_notify("Added to watchlist"))
+              .catch((err) => func_notify("Something went wrong"));
+        } else {
+          return func_notify("Already Added");
+        }
+      })
+      .catch((err) => func_notify("Something went wrong"));
   };
-  const handleFavourites = (type) => {
+  const handleFavourites = (typeS) => {
     if (!authState.auth) {
       return func_notify("SignIn to Continue");
     }
 
-    authState.auth.userId &&
-      db
-        .collection(authState.auth.userId)
-        .doc("user")
-        .collection("favourites")
-        .add({
-          id,
-          name,
-          type,
-          image_path: poster,
-        })
-        .then((res) => func_notify("Added to Favourites"))
-        .catch((err) => func_notify("Something went wrong"));
+    handleDuplicate("f", id)
+      .then((res) => {
+        if (!res) {
+          authState.auth.userId &&
+            db
+              .collection(authState.auth.userId)
+              .doc("user")
+              .collection("favourites")
+              .add({
+                id,
+                name,
+                type: typeS,
+                image_path: poster,
+              })
+              .then((res) => func_notify("Added to favourites"))
+              .catch((err) => func_notify("Something went wrong"));
+        } else {
+          return func_notify("Already Added");
+        }
+      })
+      .catch((err) => func_notify("Something went wrong"));
+  };
+
+  const handleDuplicate = async (fType, mediaId) => {
+    return await db
+      .collection(authState.auth.userId)
+      .doc("user")
+      .collection(fType === "w" ? "watchlist" : "favourites")
+      .where("id", "==", mediaId)
+      .get()
+      .then((snapshot) => {
+        return snapshot.docs.length > 0 ? true : false;
+      })
+      .catch((err) => func_notify("Something went wrong"));
   };
   return (
     <div
