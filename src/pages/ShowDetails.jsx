@@ -432,7 +432,7 @@ const ShowDetails = () => {
           <div className="mx-auto my-auto w-3/4 h-3/4 outline-none">
             <iframe
               className="h-full w-full"
-              src={`https://www.youtube.com/embed/${Trailer.key}`}
+              src={`https://www.youtube.com/embed/${Trailer?.key}`}
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
