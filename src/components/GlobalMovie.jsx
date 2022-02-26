@@ -18,6 +18,7 @@ const GlobalMovie = ({
   watch,
   fbId,
   func_notify,
+  white,
 }) => {
   const navigate = useNavigate();
   const authState = useSelector((state) => state.auth);
@@ -92,7 +93,6 @@ const GlobalMovie = ({
       })
       .catch((err) => func_notify("Something went wrong"));
   };
-  // FIXME media tv / movie showing wrong
   return (
     <div
       className="h-96 w-64 ml-6 mb-6 relative movieHoverContainer cursor-pointer"
@@ -105,10 +105,20 @@ const GlobalMovie = ({
       />
       <div className="absolute top-0 bg-black bg-opacity-30 h-full w-full movieDetails">
         <div className="flex flex-col ml-2 mt-2">
-          <span className="uppercase text-md font-semibold movieCategory">
+          <span
+            className={`uppercase text-md font-semibold movieCategory ${
+              white && "text-white"
+            }`}
+          >
             {type ? "Tv Show" : "Movie"}
           </span>
-          <span className="text-xl font-normal -mt-1 movieName">{name}</span>{" "}
+          <span
+            className={`text-xl font-normal -mt-1 movieName ${
+              white && "text-white"
+            }`}
+          >
+            {name}
+          </span>{" "}
           {date && (
             <span className="text-lg font-thin movieDirector">
               Release Date: {date}

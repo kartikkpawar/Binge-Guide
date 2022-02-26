@@ -21,7 +21,7 @@ const SearchResults = () => {
       <span className="my-5 text-4xl text-white">
         {data?.total_results > 0 ? "Results" : "Nothing Found. Try Again"}
       </span>
-      <div className="h-full w-full hideScrollBar flex mt-8">
+      <div className="h-full w-full hideScrollBar flex flex-wrap mx-auto mt-8">
         {!isLoading &&
           data?.total_results > 0 &&
           data?.results?.map(
@@ -33,6 +33,7 @@ const SearchResults = () => {
                   date={result.first_air_date || result.release_date}
                   image={result.poster_path}
                   id={result.id}
+                  white
                 />
               )
           )}
