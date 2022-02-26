@@ -7,7 +7,7 @@ const initialState = {
   comingSoon: false,
   favourites: false,
   watchlist: false,
-  tvShows: true,
+  tvShows: false,
   movies: false,
 };
 
@@ -26,7 +26,7 @@ export const tabsSlice = createSlice({
       state.comingSoon = false;
       state.favourites = false;
       state.watchlist = false;
-      state.tvShows = true;
+      state.tvShows = false;
       state.movies = false;
     },
   },

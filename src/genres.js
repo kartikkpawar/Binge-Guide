@@ -49,7 +49,6 @@ const tvGenersHelper = (id) => {
   return valArray;
 };
 const movieGenersHelper = (id) => {
-  console.log(id);
   const valArray = [];
   id.forEach((i) => {
     const temp = movieGeners.find((g) => g.id === i);

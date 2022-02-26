@@ -280,7 +280,10 @@ const Sidebar = () => {
             ) : (
               <div className="flex" onClick={() => navigate("/signin")}>
                 <FiLogIn className="text-xl 2xl:text-2xl menuIcon" />
-                <span className="ml-2 text-lg 2xl:text-xl font-semibold menuText">
+                <span
+                  className="ml-2 text-lg 2xl:text-xl font-semibold menuText"
+                  onClick={() => tabHandler("home")}
+                >
                   Sign In
                 </span>
               </div>
