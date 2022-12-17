@@ -86,10 +86,10 @@ const Home = () => {
             </div>
           ) : (
             <Carousel
-              autoPlay={true}
-              interval={5000}
-              transitionTime={3000}
-              infiniteLoop={true}
+              // autoPlay={true}
+              // interval={5000}
+              // transitionTime={3000}
+              // infiniteLoop={true}
               renderArrowNext={() => false}
               renderArrowPrev={() => false}
               statusFormatter={() => false}

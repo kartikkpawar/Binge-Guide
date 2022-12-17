@@ -107,7 +107,9 @@ const PopularShow = ({
           <span className="font-normal text-sm 2xl:text-base text-gray-400 ">
             {geners.map((g) => g + ", ")}
           </span>
-          <span className="ml-2 text-gray-200">%{populartiy * 10} Match</span>
+          <span className="ml-2 text-gray-200">
+            %{Math.round(populartiy * 100) / 10} Match
+          </span>
         </div>
 
         <div className="mt-3 flex items-center">
