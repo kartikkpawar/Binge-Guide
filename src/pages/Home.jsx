@@ -201,7 +201,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="w-3/12 pt-7 px-12 flex flex-col">
+      <div className="w-3/12 pt-7 px-12 flex flex-col ">
         <span className="mt-8 text-xl font-normal">
           Top Rated {tabs.tvShows ? "Tv Shows" : "Movies"}
         </span>

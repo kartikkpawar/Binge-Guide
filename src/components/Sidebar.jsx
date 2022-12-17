@@ -13,17 +13,10 @@ import { auth } from "../firebase";
 
 const Sidebar = () => {
   const authState = useSelector((state) => state.auth);
+  const tabs = useSelector((state) => state.tabs);
 
   const navigate = useNavigate();
 
-  const [tabs, setTabs] = useState({
-    home: true,
-    freeWatch: false,
-    discover: false,
-    comingSoon: false,
-    favourites: false,
-    watchlist: false,
-  });
   const dispatch = useDispatch();
 
   const tabHandler = (tabName) => {
@@ -36,67 +29,6 @@ const Sidebar = () => {
         dispatch(changeTab(data));
       }
     }
-
-    tabName === "home" &&
-      setTabs((prevstate) => ({
-        ...prevstate,
-        home: true,
-        freeWatch: false,
-        discover: false,
-        comingSoon: false,
-        favourites: false,
-        watchlist: false,
-      }));
-    tabName === "freeWatch" &&
-      setTabs((prevstate) => ({
-        ...prevstate,
-        home: false,
-        freeWatch: true,
-        discover: false,
-        comingSoon: false,
-        favourites: false,
-        watchlist: false,
-      }));
-    tabName === "discover" &&
-      setTabs((prevstate) => ({
-        ...prevstate,
-        home: false,
-        freeWatch: false,
-        discover: true,
-        comingSoon: false,
-        favourites: false,
-        watchlist: false,
-      }));
-    tabName === "comingSoon" &&
-      setTabs((prevstate) => ({
-        ...prevstate,
-        home: false,
-        freeWatch: false,
-        discover: false,
-        comingSoon: true,
-        favourites: false,
-        watchlist: false,
-      }));
-    tabName === "favourites" &&
-      setTabs((prevstate) => ({
-        ...prevstate,
-        home: false,
-        freeWatch: false,
-        discover: false,
-        comingSoon: false,
-        favourites: true,
-        watchlist: false,
-      }));
-    tabName === "watchlist" &&
-      setTabs((prevstate) => ({
-        ...prevstate,
-        home: false,
-        freeWatch: false,
-        discover: false,
-        comingSoon: false,
-        favourites: false,
-        watchlist: true,
-      }));
   };
 
   return (
