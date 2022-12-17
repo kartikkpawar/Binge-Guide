@@ -12,8 +12,11 @@ const RecommendeMovies = ({ image, name, type, id }) => {
   };
 
   return (
-    <div onClick={onClickHandler} className="cursor-pointer">
-      <div className="h-52 2xl:h-60 w-36 2xl:w-44 mr-3 relative group">
+    <div
+      onClick={onClickHandler}
+      className="cursor-pointer mt-2 xl:mt-0 overflow-y-hidden flex-shrink-0"
+    >
+      <div className="h-36 xl:h-52 2xl:h-60 w-24 xl:w-36 2xl:w-44 mr-3 relative group">
         <img
           src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${image}`}
           alt={name}
@@ -23,7 +26,7 @@ const RecommendeMovies = ({ image, name, type, id }) => {
           <span className="text-lg font-semibold text-proj-red">
             {type ? "Tv Show" : "Movie"}
           </span>
-          <span className="text-lg font-thin">{name}</span>
+          <span className="text-base xl:text-lg font-md">{name}</span>
         </div>
       </div>
     </div>

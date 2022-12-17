@@ -99,22 +99,23 @@ const PopularShow = ({
         backgroundImage: `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${url})`,
       }}
     >
-      <div className="mt-28 2xl:mt-48 ml-12 bg-black w-max px-4 py-4 rounded-xl bg-opacity-60">
-        <span className="uppercase text-2xl 2xl:text-4xl font-semibold">
+      <div className="2xl:mt-72 bg-black  px-4 py-4 rounded-xl bg-opacity-50 xl:bg-opacity-60 xl:mt-28 xl:ml-12 xl:w-max">
+        <span className="uppercase text-base xl:text-2xl 2xl:text-4xl font-semibold">
           {name}
         </span>
         <div className="uppercase mt-3">
-          <span className="font-normal text-sm 2xl:text-base text-gray-400 ">
+          <span className="font-light xl:font-normal text-xs xl:text-sm 2xl:text-base text-gray-400 ">
             {geners.map((g) => g + ", ")}
           </span>
-          <span className="ml-2 text-gray-200">
+          <br className="xl:hidden" />
+          <span className="ml-2 text-gray-200 font-light xl:font-normal">
             %{Math.round(populartiy * 100) / 10} Match
           </span>
         </div>
 
         <div className="mt-3 flex items-center">
           <button
-            className="h-10 2xl:h-12 bg-proj-red rounded-md text-md 2xl:text-lg h-max w-max px-6 font-semibold "
+            className="h-10 2xl:h-12 bg-proj-red rounded-md text-md 2xl:text-lg xl:h-max w-max px-6 font-semibold "
             onClick={() => handleWatchlist(type ? "tv" : "movies")}
           >
             Watchlist

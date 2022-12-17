@@ -108,8 +108,8 @@ const Home = () => {
           )}
           <div className="flex flex-col select-none">
             <div className="flex justify-between items-center">
-              <span className="my-5 text-2xl">Poplar artist</span>
-              <div className="flex">
+              <span className="my-2 xl:my-5 text-2xl">Poplar artist</span>
+              <div className=" hidden xl:flex">
                 <div className="p-3 border border-white text-white rounded-full mr-6">
                   <BsChevronLeft
                     className="cursor-pointer"
@@ -154,11 +154,11 @@ const Home = () => {
           </div>{" "}
           <div className="flex flex-col select-none">
             <div className="flex justify-between items-center">
-              <span className="my-5 text-2xl">
+              <span className="my-2 xl:my-5 text-2xl">
                 Trending {tabs.tvShows ? "Tv Shows" : "Movies"}
               </span>
 
-              <div className="flex">
+              <div className=" hidden xl:flex">
                 <div className="p-3 border border-white text-white rounded-full mr-6">
                   <BsChevronLeft
                     className="cursor-pointer"
