@@ -26,7 +26,6 @@ const Home = () => {
 
   const artistRef = useRef();
   const recommendationRef = useRef();
-  const [searchInput, setSearchInput] = useState("");
 
   const handelScroll = (data) => {
     console.log(data[0], data[1]);
@@ -68,12 +67,6 @@ const Home = () => {
     useMediaTrendingDayQuery({
       type: tabs.tvShows ? "tv" : "movie",
     });
-  const navigate = useNavigate();
-  const handleSearch = () => {
-    const re = new RegExp(" ", "g");
-    const str = searchInput.replace(re, "%20");
-    navigate(`/search?search=${str}`);
-  };
 
   return (
     <div className="h-full flex">
@@ -209,21 +202,10 @@ const Home = () => {
         </div>
       </div>
       <div className="w-3/12 pt-7 px-12 flex flex-col">
-        <div className="flex items-center border-2 rounded-full border-gray-500 w-full p-0.5">
-          <BsSearch className="text-xl mx-2 text-gray-500" />
-          <input
-            type="text"
-            className="bg-transparent p-2 w-full focus:outline-none text-md"
-            placeholder="Search"
-            onChange={(e) => setSearchInput(e.target.value)}
-            value={searchInput}
-            onKeyPress={(e) => e.key === "Enter" && handleSearch()}
-          />
-        </div>
         <span className="mt-8 text-xl font-normal">
           Top Rated {tabs.tvShows ? "Tv Shows" : "Movies"}
         </span>
-        <div className="mt-5 flex flex-wrap justify-center h-96 hideScrollBar">
+        <div className="mt-5 flex flex-wrap justify-center h-full hideScrollBar">
           {isPopularMediaLoading ? (
             <div className="flex justify-center mb-5">
               <Loader type="Circles" color="#00BFFF" height={50} />
