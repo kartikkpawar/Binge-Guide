@@ -11,4 +11,6 @@ export default configureStore({
     [mediaApi.reducerPath]: mediaApi.reducer,
     [actorsApi.reducerPath]: actorsApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(mediaApi.middleware, actorsApi.middleware),
 });

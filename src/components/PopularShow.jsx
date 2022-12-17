@@ -93,7 +93,7 @@ const PopularShow = ({
   };
   return (
     <div
-      className="h-full p-4 w-11/12 rounded-3xl"
+      className="h-full p-4 w-11/12 rounded-3xl aspect-video"
       style={{
         backgroundSize: "cover",
         backgroundImage: `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${url})`,

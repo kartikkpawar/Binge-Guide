@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { useUpComingMediaQuery } from "../app/mediaApi";
 import GlobalMovie from "../components/GlobalMovie";
 import Loader from "react-loader-spinner";
@@ -7,8 +6,6 @@ import moment from "moment";
 import { toast, ToastContainer } from "react-toastify";
 
 const ComingSoon = () => {
-  const tabs = useSelector((state) => state.tabs);
-
   const { data, isLoading } = useUpComingMediaQuery({
     type: "movie",
   });

@@ -23,10 +23,10 @@ const MoviesShowsToggle = () => {
   };
 
   return (
-    <div className="flex h-max pb-3 items-center">
-      <div className="flex w-1/2">
+    <div className="flex h-max pb-3 items-center flex-col-reverse xl:flex-row">
+      <div className="flex xl:w-1/2 w-full justify-center mt-5 xl:mt-0 xl:justify-start">
         <span
-          className={`ml-8 text-xl font-normal select-none cursor-pointer ${
+          className={`xl:ml-8 text-base xl:text-xl font-normal select-none cursor-pointer ${
             tvShows ? "text-white" : "text-gray-500"
           }`}
           onClick={handelTabSwitch}
@@ -34,7 +34,7 @@ const MoviesShowsToggle = () => {
           Tv Shows
         </span>
         <span
-          className={`ml-8 text-xl font-normal select-none cursor-pointer ${
+          className={`ml-5 xl:ml-8  text-base xl:text-xl font-normal select-none cursor-pointer ${
             !tvShows ? "text-white" : "text-gray-500"
           }`}
           onClick={handelTabSwitch}
@@ -43,11 +43,11 @@ const MoviesShowsToggle = () => {
         </span>
       </div>
 
-      <div className="flex items-center border-2 rounded-full border-gray-500 w-1/2 p-0.5">
-        <BsSearch className="text-xl mx-2 text-gray-500" />
+      <div className="flex items-center border-2 rounded-full border-gray-500 xl:w-1/2 w-full justify-center p-0.5">
+        <BsSearch className="text-lg xl:text-xl mx-2 text-gray-500" />
         <input
           type="text"
-          className="bg-transparent p-2 w-full focus:outline-none text-md"
+          className="bg-transparent p-2 w-full focus:outline-none text-sm xl:text-md"
           placeholder="Search"
           onChange={(e) => setSearchInput(e.target.value)}
           value={searchInput}

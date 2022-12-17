@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { BsSearch, BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import React, { useRef } from "react";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import MoviesSidebar from "../components/MoviesSidebar";
 import PopularShow from "../components/PopularShow";
 import PopularArtist from "../components/PopularArtist";
@@ -19,7 +19,6 @@ import {
 
 import { tvGenersHelper, movieGenersHelper } from "../genres";
 import { toast, ToastContainer } from "react-toastify";
-import { useNavigate } from "react-router";
 
 const Home = () => {
   const tabs = useSelector((state) => state.tabs);
@@ -70,9 +69,9 @@ const Home = () => {
 
   return (
     <div className="h-full flex">
-      <div className="flex flex-col justify-between w-9/12 border-r border-gray-600 pt-8 px-16 hideScrollBar">
+      <div className="flex flex-col justify-between w-full xl:w-9/12 border-r border-gray-600 pt-8 px-1 xl:px-16 hideScrollBar">
         <MoviesShowsToggle />
-        <div className="h-full p-3">
+        <div className="h-full p-3 ">
           {isTrendingDayLoading ? (
             <div className="flex justify-center items-center mb-5 h-2/4">
               <Loader type="Circles" color="#00BFFF" height={50} />
@@ -201,7 +200,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="w-3/12 pt-7 px-12 flex flex-col ">
+      <div className="w-3/12 pt-7 px-12 flex-col hidden xl:flex">
         <span className="mt-8 text-xl font-normal">
           Top Rated {tabs.tvShows ? "Tv Shows" : "Movies"}
         </span>

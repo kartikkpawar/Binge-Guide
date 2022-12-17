@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Logo from "../assets/Logo.svg";
 import { RiHome2Fill, RiCompassDiscoverLine } from "react-icons/ri";
 import { BiCameraMovie } from "react-icons/bi";
@@ -32,7 +32,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="min-h-screen  bg-black-background p-2 select-none">
+    <div className="min-h-screenbg-black-background p-2 select-none ">
       <div className="flex justify-center items-center mt-5 ">
         <img src={Logo} alt="" className="h-10 2xl:h-12" />
         <span className="text-white font-semibold xl:text-xl 2xl:text-3xl ml-4">
