@@ -4,7 +4,7 @@ import { changeTab } from "../app/tabs";
 import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 const MoviesShowsToggle = () => {
-  const [tvShows, setTvShows] = useState(true);
+  const [tvShows, setTvShows] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const dispatch = useDispatch();
 

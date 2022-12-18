@@ -8,7 +8,7 @@ const initialState = {
   favourites: false,
   watchlist: false,
   tvShows: false,
-  movies: false,
+  movies: true,
 };
 
 export const tabsSlice = createSlice({
@@ -27,7 +27,7 @@ export const tabsSlice = createSlice({
       state.favourites = false;
       state.watchlist = false;
       state.tvShows = false;
-      state.movies = false;
+      state.movies = true;
     },
   },
 });
