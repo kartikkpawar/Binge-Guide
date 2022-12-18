@@ -34,7 +34,7 @@ const MovieDetails = () => {
   const recommendationMessage = (vote) => {
     if (vote * 10 > 70) {
       return (
-        <span className="text-white text-sm xl:text-md font-medium">
+        <span className="text-white  text-xs xl:text-md font-thin xl:font-medium">
           Our Users Are Recommending It
         </span>
       );
@@ -356,7 +356,7 @@ const MovieDetails = () => {
               )}
             </div>
           </div>
-          <div className="w-full xl:w-1/5">
+          <div className="w-1/5 hidden xl:block">
             {" "}
             <span className="mt-8 text-xl font-normal text-white">
               More Like This

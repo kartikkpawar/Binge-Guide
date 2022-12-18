@@ -10,20 +10,20 @@ const TvEpisode = ({ name, date, overview, num, image }) => {
     }
   }
   return (
-    <div className="w-full h-36 mb-4 p-2 flex cursor-pointer bg-gray-900 bg-opacity-80 rounded-lg">
+    <div className="w-full h-28 xl:h-36 mb-4 p-2 flex cursor-pointer bg-gray-900 bg-opacity-80 rounded-lg">
       <img
         src={`https://image.tmdb.org/t/p/w154${image}`}
         alt=""
-        className="h-full rounded-md"
+        className="aspect-video xl:aspect-auto h-12 xl:h-full rounded-md"
       />
       <div className="pl-5 flex flex-col">
-        <span className="text-white text-xl font-semibold">
+        <span className="text-white text-xs xl:text-xl font-semibold">
           {num}. {name}
         </span>
-        <span className="text-white text-sm font-thin">
+        <span className="text-white text-xs font-thin">
           {moment(date).format("LL")}
         </span>
-        <p className="text-white text-sm font-thin mt-3">
+        <p className="text-white text-sm font-thin mt-3 hidden xl:block">
           {truncateString(overview, 250)}
         </p>
       </div>
