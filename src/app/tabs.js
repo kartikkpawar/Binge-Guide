@@ -9,6 +9,7 @@ const initialState = {
   watchlist: false,
   tvShows: false,
   movies: true,
+  menuOpen: false,
 };
 
 export const tabsSlice = createSlice({
@@ -19,6 +20,9 @@ export const tabsSlice = createSlice({
       state[action.payload.tabName] = true;
       state[action.payload.currTab] = false;
     },
+    toggleSidebar: (state, action) => {
+      state.menuOpen = action.payload.status;
+    },
     loadHome: (state) => {
       state.home = true;
       state.freeWatch = false;
@@ -28,10 +32,11 @@ export const tabsSlice = createSlice({
       state.watchlist = false;
       state.tvShows = false;
       state.movies = true;
+      state.menuOpen = false;
     },
   },
 });
 
-export const { changeTab, loadHome } = tabsSlice.actions;
+export const { changeTab, loadHome, toggleSidebar } = tabsSlice.actions;
 
 export default tabsSlice.reducer;

@@ -6,9 +6,10 @@ import { BsViewList, BsFillStarFill } from "react-icons/bs";
 import { IoStopwatchSharp } from "react-icons/io5";
 import { FiLogOut, FiLogIn } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { changeTab } from "../app/tabs";
+import { changeTab, toggleSidebar } from "../app/tabs";
 import { signOutUSer } from "../app/auth";
 import { useNavigate } from "react-router";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 import { auth } from "../firebase";
 
 const Sidebar = () => {
@@ -31,8 +32,12 @@ const Sidebar = () => {
     }
   };
 
+  const closeMenu = () => {
+    dispatch(toggleSidebar({ status: false }));
+  };
+
   return (
-    <div className="min-h-screenbg-black-background p-2 select-none ">
+    <div className="min-h-screen bg-black-background p-2 select-none absolute xl:relative z-10 pr-5 xl:pr-0">
       <div className="flex justify-center items-center mt-5 ">
         <img src={Logo} alt="" className="h-10 2xl:h-12" />
         <span className="text-white font-semibold xl:text-xl 2xl:text-3xl ml-4">
@@ -53,12 +58,12 @@ const Sidebar = () => {
             <div className="flex items-center">
               {" "}
               <RiHome2Fill
-                className={`text-xl 2xl:text-2xl menuIcon ${
+                className={`text-base xl:text-xl 2xl:text-2xl menuIcon ${
                   tabs.home && "text-proj-red"
                 }`}
               />
               <span
-                className={`ml-2 text-lg 2xl:text-xl font-semibold menuText ${
+                className={`ml-2 text-base xl:text-lg 2xl:text-xl font-semibold menuText ${
                   tabs.home && "text-white"
                 }`}
               >
@@ -75,12 +80,12 @@ const Sidebar = () => {
           >
             <div className="flex items-center">
               <BiCameraMovie
-                className={`text-xl 2xl:text-2xl menuIcon ${
+                className={`text-base xl:text-xl 2xl:text-2xl menuIcon ${
                   tabs.freeWatch && "text-proj-red"
                 }`}
               />
               <span
-                className={`ml-2 text-lg 2xl:text-xl font-semibold menuText ${
+                className={`ml-2 text-base xl:text-lg 2xl:text-xl font-semibold menuText ${
                   tabs.freeWatch && "text-white"
                 }`}
               >
@@ -97,12 +102,12 @@ const Sidebar = () => {
           >
             <div className="flex items-center">
               <RiCompassDiscoverLine
-                className={`text-xl 2xl:text-2xl menuIcon ${
+                className={`text-base xl:text-xl 2xl:text-2xl menuIcon ${
                   tabs.discover && "text-proj-red"
                 }`}
               />
               <span
-                className={`ml-2 text-lg 2xl:text-xl font-semibold menuText ${
+                className={`ml-2 text-base xl:text-lg 2xl:text-xl font-semibold menuText ${
                   tabs.discover && "text-white"
                 }`}
               >
@@ -120,12 +125,12 @@ const Sidebar = () => {
             <div className="flex items-center">
               {" "}
               <IoStopwatchSharp
-                className={`text-xl 2xl:text-2xl menuIcon ${
+                className={`text-base xl:text-xl 2xl:text-2xl menuIcon ${
                   tabs.comingSoon && "text-proj-red"
                 }`}
               />
               <span
-                className={`ml-2 text-lg 2xl:text-xl font-semibold menuText ${
+                className={`ml-2 text-base xl:text-lg 2xl:text-xl font-semibold menuText ${
                   tabs.comingSoon && "text-white"
                 }`}
               >
@@ -150,12 +155,12 @@ const Sidebar = () => {
             <div className="flex items-center">
               {" "}
               <BsFillStarFill
-                className={`text-xl 2xl:text-2xl menuIcon ${
+                className={`text-base xl:text-xl 2xl:text-2xl menuIcon ${
                   tabs.favourites && "text-proj-red"
                 }`}
               />
               <span
-                className={`ml-2 text-lg 2xl:text-xl font-semibold menuText ${
+                className={`ml-2 text-base xl:text-lg 2xl:text-xl font-semibold menuText ${
                   tabs.favourites && "text-white"
                 }`}
               >
@@ -173,12 +178,12 @@ const Sidebar = () => {
             <div className="flex items-center">
               {" "}
               <BsViewList
-                className={`text-xl 2xl:text-2xl menuIcon ${
+                className={`text-base xl:text-xl 2xl:text-2xl menuIcon ${
                   tabs.watchlist && "text-proj-red"
                 }`}
               />
               <span
-                className={`ml-2 text-lg 2xl:text-xl font-semibold menuText ${
+                className={`ml-2 text-base xl:text-lg 2xl:text-xl font-semibold menuText ${
                   tabs.watchlist && "text-white"
                 }`}
               >
@@ -204,16 +209,19 @@ const Sidebar = () => {
                   localStorage.removeItem("userAuth");
                 }}
               >
-                <FiLogOut className="text-xl 2xl:text-2xl menuIcon" />
-                <span className="ml-2 text-lg 2xl:text-xl font-semibold menuText">
+                <FiLogOut className="text-base xl:text-xl 2xl:text-2xl menuIcon" />
+                <span className="ml-2 text-base xl:text-lg 2xl:text-xl font-semibold menuText">
                   Sign Out
                 </span>
               </div>
             ) : (
-              <div className="flex" onClick={() => navigate("/signin")}>
-                <FiLogIn className="text-xl 2xl:text-2xl menuIcon" />
+              <div
+                className="flex items-center"
+                onClick={() => navigate("/signin")}
+              >
+                <FiLogIn className="text-base xl:text-xl 2xl:text-2xl menuIcon" />
                 <span
-                  className="ml-2 text-lg 2xl:text-xl font-semibold menuText"
+                  className="ml-2 text-base xl:text-lg 2xl:text-xl font-semibold menuText"
                   onClick={() => tabHandler("home")}
                 >
                   Sign In
@@ -222,6 +230,13 @@ const Sidebar = () => {
             )}
           </div>{" "}
         </div>
+      </div>
+
+      <div className="mt-14 w-full xl:hidden">
+        <IoIosCloseCircleOutline
+          className="text-white mx-auto text-4xl"
+          onClick={closeMenu}
+        />
       </div>
     </div>
   );

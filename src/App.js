@@ -27,10 +27,15 @@ const App = () => {
         })
       );
   }, [dispatch]);
+  console.log(tabs.menuOpen);
 
   return (
     <div className="flex bg-black-background">
-      <div className="xl:w-2/12 border-r border-gray-600 hidden xl:block">
+      <div
+        className={`xl:w-2/12 border-r border-gray-600 ${
+          !tabs.menuOpen && "hidden"
+        } xl:block`}
+      >
         <Sidebar />
       </div>
       <div className="w-full xl:w-10/12 text-white h-screen">
