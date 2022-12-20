@@ -20,9 +20,9 @@ const MoviesSidebar = ({
   const navigate = useNavigate();
   const onClickHandler = () => {
     if (type) {
-      return navigate(`/tv-detail/${id}/1`);
+      return navigate(`/tv-detail/${id}/1`, { replace: true });
     }
-    return navigate(`/movie-detail/${id}`);
+    return navigate(`/movie-detail/${id}`, { replace: true });
   };
   return (
     <div

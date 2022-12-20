@@ -20,9 +20,9 @@ const PopularShow = ({
   const navigate = useNavigate();
   const handleOnClick = () => {
     if (type) {
-      return navigate(`/tv-detail/${id}/1`);
+      return navigate(`/tv-detail/${id}/1`, { replace: true });
     }
-    return navigate(`/movie-detail/${id}`);
+    return navigate(`/movie-detail/${id}`, { replace: true });
   };
 
   const handleWatchlist = (typeS) => {

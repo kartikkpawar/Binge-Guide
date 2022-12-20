@@ -358,7 +358,9 @@ const ShowDetails = () => {
                   className="bg-transparent text-white focus:outline-none text-xl p-2"
                   value={defaultoption?.id}
                   onChange={(e) =>
-                    navigate(`/tv-detail/${params.id}/${e.target.value}`)
+                    navigate(`/tv-detail/${params.id}/${e.target.value}`, {
+                      replace: true,
+                    })
                   }
                 >
                   {filterSeasons.map((season) => (

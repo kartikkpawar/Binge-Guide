@@ -25,9 +25,9 @@ const ActorDetail = () => {
     useActorsPopularQuery(params.id);
   const handleClick = (type, id) => {
     if (type) {
-      return navigate(`/tv-detail/${id}/1`);
+      return navigate(`/tv-detail/${id}/1`, { replace: true });
     }
-    return navigate(`/movie-detail/${id}`);
+    return navigate(`/movie-detail/${id}`, { replace: true });
   };
   return (
     !isActorLoading && (

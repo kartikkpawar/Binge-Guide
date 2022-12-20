@@ -5,7 +5,7 @@ const PopularArtist = ({ image, name, gender, id }) => {
   const navigate = useNavigate();
   return (
     <div
-      onClick={() => navigate(`/actor-detail/${id}`)}
+      onClick={() => navigate(`/actor-detail/${id}`, { replace: true })}
       className="cursor-pointer"
     >
       <div className="h-36 xl:h-52 2xl:h-60 w-24 xl:w-36 2xl:w-44 mr-3 relative group">

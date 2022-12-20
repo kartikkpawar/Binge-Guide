@@ -20,7 +20,7 @@ const MoviesShowsToggle = () => {
   const handleSearch = () => {
     const re = new RegExp(" ", "g");
     const str = searchInput.replace(re, "%20");
-    navigate(`/search?search=${str}`);
+    navigate(`/search?search=${str}`, { replace: true });
   };
   const menuOpenHandler = () => {
     dispatch(toggleSidebar({ status: true }));
