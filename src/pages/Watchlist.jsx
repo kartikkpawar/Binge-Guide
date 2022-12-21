@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import GlobalMovie from "../components/GlobalMovie";
 import { db } from "../firebase";
 import { FiLogIn } from "react-icons/fi";
+import { AiOutlineMenu } from "react-icons/ai";
+import { toggleSidebar } from "../app/tabs";
 
 const Watchlist = () => {
   const [favs, setFavs] = useState([]);
   const authState = useSelector((state) => state.auth);
   const [rerender, setRerender] = useState(false);
-  // TODO: UI FIXES For NO MOVIES OR NOT LOGIN
 
   useEffect(() => {
     authState.auth.userId &&
@@ -39,9 +40,21 @@ const Watchlist = () => {
       theme: "dark",
     });
   };
+  const dispatch = useDispatch();
+  const menuOpenHandler = () => {
+    dispatch(toggleSidebar({ status: true }));
+  };
   return (
     <div className="h-full pt-8 flex w-full flex-col overflow-scroll hideScrollBar">
-      <span className=" text-3xl uppercase ml-8 mt-8">Watchlist</span>
+      <div className="flex items-center">
+        <AiOutlineMenu
+          className="xl:hidden text-2xl text-white ml-3"
+          onClick={menuOpenHandler}
+        />
+        <span className=" text-xl xl:text-3xl uppercase ml-8 xl:mt-8">
+          Watchlist
+        </span>
+      </div>
 
       <div className="flex w-full h-full flex-wrap mt-12  pr-8 ">
         {authState.auth ? (

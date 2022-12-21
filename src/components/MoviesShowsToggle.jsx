@@ -27,7 +27,7 @@ const MoviesShowsToggle = () => {
   };
 
   return (
-    <div className="flex h-max pb-3 items-center flex-col-reverse xl:flex-row xl:justify-between ">
+    <div className="flex h-max pb-3 items-center flex-col-reverse xl:flex-row xl:justify-between">
       <div className="flex xl:w-1/2 w-full justify-center mt-5 xl:mt-0 xl:justify-start">
         <span
           className={`mr-5 xl:ml-8  text-base xl:text-xl font-normal select-none cursor-pointer ${

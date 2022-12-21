@@ -45,11 +45,11 @@ const Discover = () => {
       <div className="pl-8 p-8 h-full w-full overflow-scroll hideScrollBar">
         <div>
           <div className="flex justify-between pr-5">
-            <span className="text-2xl select-none">
+            <span className="text-lg xl:text-2xl select-none">
               Available OTT Platforms
             </span>
             <div className="flex">
-              <div className="p-3 border border-white text-white rounded-full mr-6">
+              <div className="p-3 border border-white hidden xl:block text-white rounded-full mr-6">
                 <BsChevronLeft
                   className="cursor-pointer"
                   onClick={() => {
@@ -57,7 +57,7 @@ const Discover = () => {
                   }}
                 />
               </div>
-              <div className="p-3 border border-white text-white rounded-full">
+              <div className="p-3 border border-white hidden xl:block text-white rounded-full">
                 <BsChevronRight
                   className="cursor-pointer"
                   onClick={() => {
@@ -78,7 +78,7 @@ const Discover = () => {
                     <img
                       src={`https://image.tmdb.org/t/p/original${ott.logo_path}`}
                       alt={ott.provider_name}
-                      className="h-max w-max rounded-lg mr-3"
+                      className="xl:h-max xl:w-max rounded-lg mr-3 h-10 w-10"
                     />
                   )
               )}

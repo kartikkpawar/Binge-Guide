@@ -13,9 +13,9 @@ const FreeWatch = () => {
   });
   console.log(data);
   return (
-    <div className="h-full pt-8 flex w-full flex-col overflow-scroll hideScrollBar pr-8">
+    <div className="h-full pt-8 flex w-full flex-col overflow-scroll hideScrollBar xl:pr-8">
       <MoviesShowsToggle />
-      <div className="flex w-full h-full flex-wrap mt-12 justify-between pr-8">
+      <div className="flex w-full h-full flex-wrap mt-12  justify-around xl:justify-between pr-8">
         {isLoading ? (
           <div className="flex justify-center items-center mb-5 h-full w-full">
             <Loader type="Circles" color="#00BFFF" height={50} />

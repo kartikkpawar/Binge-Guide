@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { FiLogIn } from "react-icons/fi";
+import { AiOutlineMenu } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import GlobalMovie from "../components/GlobalMovie";
 import { db } from "../firebase";
+import { useDispatch } from "react-redux";
+import { toggleSidebar } from "../app/tabs";
 
 const Favourites = () => {
   const authState = useSelector((state) => state.auth);
@@ -38,9 +41,21 @@ const Favourites = () => {
       theme: "dark",
     });
   };
+  const dispatch = useDispatch();
+  const menuOpenHandler = () => {
+    dispatch(toggleSidebar({ status: true }));
+  };
   return (
     <div className="h-full pt-8 flex w-full flex-col overflow-scroll hideScrollBar">
-      <span className=" text-3xl uppercase ml-8 mt-8">Favourites</span>
+      <div className="flex items-center">
+        <AiOutlineMenu
+          className="xl:hidden text-2xl text-white ml-3"
+          onClick={menuOpenHandler}
+        />
+        <span className=" text-xl xl:text-3xl uppercase ml-8 xl:mt-8">
+          Favourites
+        </span>
+      </div>
 
       <div className="flex w-full h-full flex-wrap mt-12  pr-8 ">
         {authState.auth ? (
