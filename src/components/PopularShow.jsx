@@ -93,13 +93,13 @@ const PopularShow = ({
   };
   return (
     <div
-      className="h-full p-4 w-11/12 rounded-3xl aspect-video"
+      className="h-full p-4 w-full xl:w-11/12 rounded-3xl aspect-video flex items-end"
       style={{
         backgroundSize: "cover",
         backgroundImage: `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${url})`,
       }}
     >
-      <div className="2xl:mt-72 bg-black  px-4 py-4 rounded-xl bg-opacity-50 xl:bg-opacity-60 xl:mt-28 xl:ml-12 xl:w-max">
+      <div className="2xl:mt-72 bg-black  px-4 py-4 rounded-xl bg-opacity-50 xl:bg-opacity-60 xl:mt-28 xl:ml-12 w-4/6 xl:w-max mx-auto">
         <span className="uppercase text-base xl:text-2xl 2xl:text-4xl font-semibold">
           {name}
         </span>
