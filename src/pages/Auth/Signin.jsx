@@ -82,22 +82,22 @@ const Signin = () => {
     <div className="authBackground h-screen w-full flex justify-center items-center">
       {redirect && <Navigate to="/" />}
       <div className="w-max flex flex-col items-center">
-        <span className="text-5xl text-white font-semibold text-center">
+        <span className="text-3xl xl:text-5xl text-white font-semibold text-center">
           Unlimited movies, TV shows to binge.
         </span>
-        <span className="text-3xl text-white font-thin mt-2 text-center">
+        <span className="text-xl xl:text-3xl text-white font-thin mt-2 text-center">
           Ready to binge, Sign In and start
         </span>
         <div className="flex flex-col items-center w-full">
           <input
             type="text"
-            className="mt-5 h-10 w-2/4 rounded-md focus:outline-none p-2"
+            className="mt-5 h-10 w-5/6 xl:w-2/4 rounded-md focus:outline-none p-2"
             placeholder="Email"
             onChange={handlechanges("email")}
           />
           <input
             type="password"
-            className="mt-5 h-10 w-2/4 rounded-md focus:outline-none p-2"
+            className="mt-5 h-10  w-5/6 xl:w-2/4 rounded-md focus:outline-none p-2"
             placeholder="Password"
             onChange={handlechanges("password")}
           />
