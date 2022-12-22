@@ -77,9 +77,9 @@ const Home = () => {
             </div>
           ) : (
             <Carousel
-              autoPlay={true}
-              interval={5500}
-              transitionTime={3000}
+              // autoPlay={true}
+              // interval={5500}
+              // transitionTime={3000}
               infiniteLoop={true}
               renderArrowNext={() => false}
               renderArrowPrev={() => false}
