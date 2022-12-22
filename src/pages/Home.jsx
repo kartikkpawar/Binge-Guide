@@ -27,7 +27,6 @@ const Home = () => {
   const recommendationRef = useRef();
 
   const handelScroll = (data) => {
-    console.log(data[0], data[1]);
     if (data[1] === "artist" && data[0] === "left") {
       artistRef.current.scrollBy(-90, 0);
     } else if (data[1] === "artist" && data[0] === "right") {
@@ -78,10 +77,10 @@ const Home = () => {
             </div>
           ) : (
             <Carousel
-              // autoPlay={true}
-              // interval={5000}
-              // transitionTime={3000}
-              // infiniteLoop={true}
+              autoPlay={true}
+              interval={5500}
+              transitionTime={3000}
+              infiniteLoop={true}
               renderArrowNext={() => false}
               renderArrowPrev={() => false}
               statusFormatter={() => false}

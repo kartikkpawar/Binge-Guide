@@ -113,7 +113,7 @@ const PopularShow = ({
           </span>
         </div>
 
-        <div className="mt-3 flex items-center">
+        <div className="mt-3 flex items-center mx-auto w-max xl:w-full xl:mx-0">
           <button
             className="h-10 2xl:h-12 bg-proj-red rounded-md text-md 2xl:text-lg xl:h-max w-max px-6 font-semibold "
             onClick={() => handleWatchlist(type ? "tv" : "movies")}
